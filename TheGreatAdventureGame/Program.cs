@@ -1,4 +1,5 @@
 using TheGreatAdventureGame.Models;
+using TheGreatAdventureGame.Models.Entities;
 using TheGreatAdventureGame.Models.Items;
 using TheGreatAdventureGame.Models.Items.Weapons;
 
@@ -27,7 +28,16 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 //quick testing
-WeaponBase sword = new Sword(Rarity.Rare);
+Sword sword = new Sword();
+Monk monk = new Monk();
 
+Console.WriteLine(monk.Health.ToString());
+Console.WriteLine(sword.Rarity);
+
+sword.DealDamage(monk);
+
+Console.WriteLine(monk.Health.ToString());
+
+//end testing 
 
 app.Run();
