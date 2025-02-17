@@ -1,6 +1,6 @@
 ﻿namespace TheGreatAdventureGame.Models.Entities
 {
-    public class Monk : IEntity, IDamagable, IHealth
+    public class Monk : IEntity, IDamagable
     {
         public string Name { get; set; } = "Monk";
         public string Description { get; set; } = "Monk Description here";

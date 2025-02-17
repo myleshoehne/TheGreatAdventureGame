@@ -2,10 +2,8 @@
 
 namespace TheGreatAdventureGame.Models.Items
 {
-    public interface IDealsDamage
-    {
-        NumberRange HealthEffectRange { get; set; }
-        HealthEffectType HealthEffectType { get; set; }
+    public interface IDealsDamage : IEffectsHealth
+    {    
         void DealDamage(IEntity? entity);
     }
 }

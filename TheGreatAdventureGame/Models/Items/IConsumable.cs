@@ -1,7 +1,9 @@
-﻿namespace TheGreatAdventureGame.Models.Items
+﻿using TheGreatAdventureGame.Models.Entities;
+
+namespace TheGreatAdventureGame.Models.Items
 {
-    public interface IConsumable
+    public interface IConsumable : IEffectsHealth
     {
-        void Consume();
+        void Consume(IEntity entity);
     }
 }

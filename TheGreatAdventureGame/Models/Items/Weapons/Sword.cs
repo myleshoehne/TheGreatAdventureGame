@@ -1,4 +1,5 @@
 ﻿using TheGreatAdventureGame.Helpers;
+using TheGreatAdventureGame.Managers;
 using TheGreatAdventureGame.Models.Entities;
 
 namespace TheGreatAdventureGame.Models.Items.Weapons
@@ -16,9 +17,9 @@ namespace TheGreatAdventureGame.Models.Items.Weapons
         {
             if (entity != null)
             {
-                if(entity is IDamagable damagableEntity)
+                if (entity is IDamagable damagableEntity)
                 {
-                    damagableEntity.TakeDamage(this.HealthEffectRange.GetRandomValueFromRarityRange(this.Rarity));
+                        damagableEntity.TakeDamage(this.HealthEffectRange.GetRandomValueFromRarityRange(this.Rarity));
                 }
                 else
                 {
