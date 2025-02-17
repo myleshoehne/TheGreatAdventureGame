@@ -1,4 +1,4 @@
-﻿namespace TheGreatAdventureGame.Models.Items
+﻿namespace TheGreatAdventureGame.Models.Items.Interfaces
 {
     public interface IStackable
     {

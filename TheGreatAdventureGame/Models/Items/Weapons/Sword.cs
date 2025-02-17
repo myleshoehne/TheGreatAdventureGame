@@ -1,35 +1,23 @@
 ﻿using TheGreatAdventureGame.Helpers;
 using TheGreatAdventureGame.Managers;
-using TheGreatAdventureGame.Models.Entities;
+using TheGreatAdventureGame.Models.Entities.Interfaces;
+using TheGreatAdventureGame.Models.Items.Interfaces;
 
 namespace TheGreatAdventureGame.Models.Items.Weapons
 {
-    public class Sword : IItem, IDealsDamage, IBreakable
+    public class Sword : IWeapon, IBreakable
     {
         public string Name { get; set; } = "Sword";
         public string Description { get; set; } = "Sword description here...";
         public Rarity Rarity { get; set; } = ItemHelper.GenerateRarity();
-        public NumberRange HealthEffectRange { get; set; } = new NumberRange(10, 15);
-        public HealthEffectType HealthEffectType { get; set; } = HealthEffectType.Negative;
         public Vital Durability { get; set; } = new Vital(100);
+        public NumberRange EffectRange { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public HealthEffectType EffectType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public SurvivalVitalType EffectSurvivalVitalType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public void DealDamage(IEntity? entity)
+        public void DealDamageToEntity(IEntity? entity)
         {
-            if (entity != null)
-            {
-                if (entity is IDamagable damagableEntity)
-                {
-                        damagableEntity.TakeDamage(this.HealthEffectRange.GetRandomValueFromRarityRange(this.Rarity));
-                }
-                else
-                {
-                    Console.WriteLine("Entity cannot be attacked.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("No entity to attack.");
-            }
+            throw new NotImplementedException();
         }
     }
 }

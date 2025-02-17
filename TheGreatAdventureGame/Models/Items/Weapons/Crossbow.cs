@@ -1,21 +1,23 @@
 ﻿using TheGreatAdventureGame.Helpers;
 using TheGreatAdventureGame.Managers;
-using TheGreatAdventureGame.Models.Entities;
+using TheGreatAdventureGame.Models.Entities.Interfaces;
+using TheGreatAdventureGame.Models.Items.Interfaces;
 
 namespace TheGreatAdventureGame.Models.Items.Weapons
 {
-    public class Crossbow : IItem, IDealsDamage, IBreakable
+    public class Crossbow : IWeapon, IBreakable
     {
         public string Name { get; set; } = "Crossbow";
         public string Description { get; set; } = "Crossbow description here..";
         public Rarity Rarity { get; set; } = ItemHelper.GenerateRarity();
-        public NumberRange HealthEffectRange { get; set; } = new NumberRange(20, 30);
-        public HealthEffectType HealthEffectType { get; set; } = HealthEffectType.Negative;
         public Vital Durability { get; set; } = new Vital(100);
+        public NumberRange EffectRange { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public HealthEffectType EffectType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public SurvivalVitalType EffectSurvivalVitalType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public void DealDamage(IEntity? entity)
+        public void DealDamageToEntity(IEntity? entity)
         {
-            ItemManager.DealDamage(entity, this);
+            throw new NotImplementedException();
         }
     }
 }

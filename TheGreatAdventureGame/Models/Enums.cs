@@ -15,4 +15,11 @@
         Positive, 
         Negative
     }
+
+    public enum SurvivalVitalType
+    {
+        Health,
+        Hunger,
+        Thirst
+    }
 }

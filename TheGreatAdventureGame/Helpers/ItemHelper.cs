@@ -1,4 +1,6 @@
 ﻿using TheGreatAdventureGame.Models;
+using TheGreatAdventureGame.Models.Entities;
+using TheGreatAdventureGame.Models.Items;
 
 namespace TheGreatAdventureGame.Helpers
 {
@@ -41,5 +43,7 @@ namespace TheGreatAdventureGame.Helpers
             return 3m;
         }
 
+
+        
     }
 }

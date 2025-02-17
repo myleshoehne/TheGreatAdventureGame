@@ -1,42 +1,27 @@
 ﻿using TheGreatAdventureGame.Helpers;
-using TheGreatAdventureGame.Models.Entities;
+using TheGreatAdventureGame.Models.Entities.Interfaces;
+using TheGreatAdventureGame.Models.Items.Interfaces;
 
 namespace TheGreatAdventureGame.Models.Items.Food
 {
-    public class Apple : IItem, IConsumable, IStackable
+    public class Apple : IConsumable, IStackable
     {
         public string Name { get; set; } = "Apple";
         public string Description { get; set; } = "Apple description here...";
         public Rarity Rarity { get; set; } = ItemHelper.GenerateRarity();
-        public Vital? Quantity { get; set; } //TODO: figure out quantity functionality (remove nullable)
-        public NumberRange HealthEffectRange { get; set; } = new NumberRange(5, 10);
-        public HealthEffectType HealthEffectType { get; set; } = HealthEffectType.Positive;
+        public Vital Quantity { get; set; } = new Vital(1);
+        public NumberRange EffectRange { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public HealthEffectType EffectType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public SurvivalVitalType EffectSurvivalVitalType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Apple() { }
         public Apple(Rarity rarity)
         {
             this.Rarity = rarity;
         }
-        public void Consume(IEntity? entity)
+        public void ConsumeBy(IEntity entity)
         {
-            if(entity != null)
-            {
-                if (entity is IDamagable damagableEntity)
-                {
-                    // Heal Entity
-                    int healthEffect = this.HealthEffectRange.GetRandomValueFromRarityRange(this.Rarity);
-                    damagableEntity.Health.Add(healthEffect);
-                }
-                else
-                {
-                    Console.WriteLine($"Cannot heal {entity.Name}. Is not of type IDamagable.");
-                }
-            }
-            else
-            {
-                Console.WriteLine($"{this.Name} cannot be consumed by nothing.");
-            }
-            
+            throw new NotImplementedException();
         }
     }
 }
