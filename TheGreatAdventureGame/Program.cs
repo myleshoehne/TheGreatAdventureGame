@@ -1,8 +1,10 @@
 using System.Runtime.CompilerServices;
 using TheGreatAdventureGame.Models;
 using TheGreatAdventureGame.Models.Entities;
+using TheGreatAdventureGame.Models.Entities.Interfaces;
 using TheGreatAdventureGame.Models.Items;
 using TheGreatAdventureGame.Models.Items.Food;
+using TheGreatAdventureGame.Models.Items.Interfaces;
 using TheGreatAdventureGame.Models.Items.Weapons;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,26 +31,42 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-//quick testing
+//quick testing TODO: test inventory functions
+Player player = new Player();
+
+Monk enemyMonk = new Monk();
+
 Sword sword = new Sword();
-Monk monk = new Monk();
-Apple apple = new Apple();
+Crossbow crossbow = new Crossbow();
+Apple apple = new Apple();  
+
+if(player is IInventory playerInventory)
+{
+    playerInventory.PickUpItem(sword);
+    playerInventory.PickUpItem(crossbow);
+
+    playerInventory.EquiptItem(sword.Name);
+    playerInventory.EquiptItem(sword.Name);
+
+    playerInventory.DropItem(crossbow.Name);
+    playerInventory.DropItem(crossbow.Name);
+}
+
+Console.WriteLine($"Player Health: {player.Health.ToString()}");
+Console.WriteLine($"Enemy Monk Health: {enemyMonk.Health.ToString()}");
 
 
+if(player.EquiptedItem is IWeapon weapon)
+{
+    enemyMonk.TakeWeaponEffect(weapon);
+}
+else if(player.EquiptedItem is IConsumable consumable)
+{
+    player.Consume(consumable);
+}
 
-Console.WriteLine(monk.Health.ToString());
-
-Console.WriteLine(sword.Rarity);
-sword.DealDamage(monk);
-
-
-Console.WriteLine(monk.Health.ToString());
-
-apple.Consume(monk);
-Console.WriteLine(apple.Rarity);
-
-Console.WriteLine(monk.Health.ToString());
-
+Console.WriteLine($"Player Health: {player.Health.ToString()}");
+Console.WriteLine($"Enemy Monk Health: {enemyMonk.Health.ToString()}");
 
 //end testing 
 

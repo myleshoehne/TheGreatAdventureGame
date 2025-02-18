@@ -1,41 +1,44 @@
-﻿using TheGreatAdventureGame.Models.Entities.Interfaces;
+﻿using TheGreatAdventureGame.Managers;
+using TheGreatAdventureGame.Models.Entities.Interfaces;
 using TheGreatAdventureGame.Models.Items.Interfaces;
 
 namespace TheGreatAdventureGame.Models.Entities
 {
-    public class Player : IEntity, ISurvivalVitals, IInventory
+    public class Player : IEntity, IConsumer, IWeaponTarget, ISurvivalVitals, IInventory
     {
-        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Description { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IItem? EquiptedItem { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Name { get; set; } = "Main Player"; //allow users to create this
+        public string Description { get; set; } = "Main Player desc...";
+        public Vital Health { get; set; } = new Vital(100);
+        public IItem? EquiptedItem { get; set; }
         public Vital Hunger { get; set; } = new Vital(100);
         public Vital Thirst { get; set; } = new Vital(100);
-        public Vital Health { get; set; } = new Vital(100);
-        public Dictionary<int, IItem> Items { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Dictionary<string, IItem> Items { get; set; } = new Dictionary<string, IItem>(StringComparer.OrdinalIgnoreCase);
 
-        public void DropItem(IItem item)
+        public void Consume(IConsumable consumable)
         {
-            throw new NotImplementedException();
+            CombatManager.EntityTakesEffectFromConsumable(this, consumable);
         }
 
-        public void EquiptItem(IItem item)
+        public void TakeWeaponEffect(IWeapon weapon)
         {
-            throw new NotImplementedException();
+            CombatManager.EntityTakesEffectFromWeapon(this, weapon);
+        }
+
+        public void DropItem(string itemName)
+        {
+            InventoryManager.EntityDropsItem(this, itemName);
+        }
+
+        public void EquiptItem(string itemName)
+        {
+            InventoryManager.EntityEquiptsItem(this, itemName);
         }
 
         public void PickUpItem(IItem item)
         {
-            throw new NotImplementedException();
+            InventoryManager.EntityPicksUpItem(this, item);
         }
 
-        public void Heal(int amount)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void TakeDamage(int damage)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

@@ -11,13 +11,13 @@ namespace TheGreatAdventureGame.Models.Items.Weapons
         public string Description { get; set; } = "Crossbow description here..";
         public Rarity Rarity { get; set; } = ItemHelper.GenerateRarity();
         public Vital Durability { get; set; } = new Vital(100);
-        public NumberRange EffectRange { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public HealthEffectType EffectType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public SurvivalVitalType EffectSurvivalVitalType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public SurvivalVitalType EffectSurvivalVitalType { get; set; } = SurvivalVitalType.Health;
+        public NumberRange VitalEffectRange { get; set; } = new NumberRange(7, 13);
+        public VitalEffectType VitalEffectType { get; set; } = VitalEffectType.Negative;
 
-        public void DealDamageToEntity(IEntity? entity)
+        public void DealEffectToEntity(IEntity entity)
         {
-            throw new NotImplementedException();
+            CombatManager.WeaponDealsEffectToEntity(this, entity);
         }
     }
 }

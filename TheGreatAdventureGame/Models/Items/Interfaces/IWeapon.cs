@@ -2,8 +2,8 @@
 
 namespace TheGreatAdventureGame.Models.Items.Interfaces
 {
-    public interface IWeapon : IItem, IEffectsHealth
+    public interface IWeapon : IItem, IEffectsVitals
     {
-        void DealDamageToEntity(IEntity? entity);
+        void DealEffectToEntity(IEntity entity);
     }
 }

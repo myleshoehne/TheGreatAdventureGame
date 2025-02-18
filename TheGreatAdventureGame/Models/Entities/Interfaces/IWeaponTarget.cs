@@ -2,8 +2,8 @@
 
 namespace TheGreatAdventureGame.Models.Entities.Interfaces
 {
-    public interface IDamagable
+    public interface IWeaponTarget
     {
-        void DamageSurvialVital(IWeapon weapon);
+        void TakeWeaponEffect(IWeapon weapon);
     }
 }

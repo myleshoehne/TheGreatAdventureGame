@@ -1,24 +1,28 @@
-﻿using TheGreatAdventureGame.Models.Entities.Interfaces;
+﻿using TheGreatAdventureGame.Helpers;
+using TheGreatAdventureGame.Managers;
+using TheGreatAdventureGame.Models.Entities.Interfaces;
+using TheGreatAdventureGame.Models.Items.Food;
 using TheGreatAdventureGame.Models.Items.Interfaces;
+using TheGreatAdventureGame.Models.Items.Weapons;
 
 namespace TheGreatAdventureGame.Models.Entities
 {
-    public class Monk : IEntity, IDamagable, IHealable
+    public class Monk : IEntity, IWeaponTarget, IConsumer
     {
         public string Name { get; set; } = "Monk";
         public string Description { get; set; } = "Monk Description here";
         public Vital Health { get; set; } = new Vital(100);
-        public IItem? EquiptedItem { get; set; } // give monk a staff
+        public IItem? EquiptedItem { get; set; } = new Apple(); //give staff 
 
-
-        public void DamageSurvialVital(IWeapon weapon)
+        public void TakeWeaponEffect(IWeapon weapon)
         {
-            throw new NotImplementedException();
+            CombatManager.EntityTakesEffectFromWeapon(this, weapon);
         }
 
-        public void HealSurvialVital(IConsumable consumable)
+        public void Consume(IConsumable consumable)
         {
-            throw new NotImplementedException();
+            CombatManager.EntityTakesEffectFromConsumable(this, consumable);
+            
         }
     }
 }

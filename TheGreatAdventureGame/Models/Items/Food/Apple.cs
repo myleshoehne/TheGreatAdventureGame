@@ -1,4 +1,5 @@
 ﻿using TheGreatAdventureGame.Helpers;
+using TheGreatAdventureGame.Managers;
 using TheGreatAdventureGame.Models.Entities.Interfaces;
 using TheGreatAdventureGame.Models.Items.Interfaces;
 
@@ -10,18 +11,18 @@ namespace TheGreatAdventureGame.Models.Items.Food
         public string Description { get; set; } = "Apple description here...";
         public Rarity Rarity { get; set; } = ItemHelper.GenerateRarity();
         public Vital Quantity { get; set; } = new Vital(1);
-        public NumberRange EffectRange { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public HealthEffectType EffectType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public SurvivalVitalType EffectSurvivalVitalType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
+        public NumberRange VitalEffectRange { get; set; } = new NumberRange(5, 10);
+        public VitalEffectType VitalEffectType { get; set; } = VitalEffectType.Positive;
+        public SurvivalVitalType EffectSurvivalVitalType { get; set; } = SurvivalVitalType.Health;
+        
         public Apple() { }
         public Apple(Rarity rarity)
         {
             this.Rarity = rarity;
         }
-        public void ConsumeBy(IEntity entity)
+        public void ConsumedByEntity(IEntity entity)
         {
-            throw new NotImplementedException();
+            CombatManager.ConsumableConsumedByEntity(this, entity);
         }
     }
 }

@@ -9,11 +9,14 @@
         Legendary
     }
 
-    public enum HealthEffectType
+    /// <summary>
+    /// Represents the type of effect applied to a vital (e.g., health, stamina).
+    /// </summary>
+    public enum VitalEffectType
     {
-        None,
         Positive, 
-        Negative
+        Negative,
+        Random
     }
 
     public enum SurvivalVitalType

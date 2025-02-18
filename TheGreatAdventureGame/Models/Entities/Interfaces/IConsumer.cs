@@ -2,8 +2,8 @@
 
 namespace TheGreatAdventureGame.Models.Entities.Interfaces
 {
-    public interface IHealable
+    public interface IConsumer
     {
-        void HealSurvialVital(IConsumable consumable);
+        void Consume(IConsumable consumable);
     }
 }
