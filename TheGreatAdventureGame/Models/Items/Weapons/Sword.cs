@@ -14,5 +14,11 @@ namespace TheGreatAdventureGame.Models.Items.Weapons
         public NumberRange VitalEffectRange { get; set; } = new NumberRange(5, 10);
         public VitalEffectType VitalEffectType { get; set; } = VitalEffectType.Negative;
         public SurvivalVitalType EffectSurvivalVitalType { get; set; } = SurvivalVitalType.Health;
+
+        public Sword() { }
+        public Sword(Rarity rarity)
+        {
+            this.Rarity = rarity;
+        }
     }
 }

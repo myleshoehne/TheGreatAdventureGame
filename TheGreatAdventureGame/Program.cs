@@ -12,6 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+//Add Sessions 
+builder.Services.AddSession();
+builder.Services.AddDistributedMemoryCache(); // required for session storage
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -47,5 +51,8 @@ enemyMonk.DealWeaponEffect(player);
 Console.WriteLine($"{player.Name} Health: {player.Health.ToString()}");
 
 //end testing 
+
+// Enable Sessions 
+app.UseSession();
 
 app.Run();

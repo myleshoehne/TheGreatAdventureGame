@@ -4,6 +4,6 @@ namespace TheGreatAdventureGame.Models.Entities.Interfaces
 {
     public interface IConsumer
     {
-        void Consume();
+        void Consume(IConsumable consumable);
     }
 }
