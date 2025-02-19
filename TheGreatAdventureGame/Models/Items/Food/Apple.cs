@@ -20,9 +20,5 @@ namespace TheGreatAdventureGame.Models.Items.Food
         {
             this.Rarity = rarity;
         }
-        public void ConsumedByEntity(IEntity entity)
-        {
-            CombatManager.ConsumableConsumedByEntity(this, entity);
-        }
     }
 }

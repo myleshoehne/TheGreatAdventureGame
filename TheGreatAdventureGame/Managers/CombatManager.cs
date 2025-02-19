@@ -8,42 +8,31 @@ namespace TheGreatAdventureGame.Managers
 {
     public class CombatManager
     {
-        // Item Methods
-        public static void WeaponDealsEffectToEntity(IWeapon weapon, IEntity entity)
-        {
-            if (entity == null)
-            {
-                Console.WriteLine("Cannot use weapon on nothing.");
-                return;
-            }
-
-            if (entity is not IWeaponTarget entityWeaponTarget)
-            {
-                Console.WriteLine($"Cannot attack {entity.Name}.");
-                return;
-            }
-
-            entityWeaponTarget.TakeWeaponEffect(weapon);
-        }
-
-        public static void ConsumableConsumedByEntity(IConsumable consumable, IEntity entity)
-        {
-            if (entity == null)
-            {
-                Console.WriteLine($"{consumable.Name} cannot be consumed by nothing.");
-                return;
-            }
-
-            if (entity is not IConsumer consumer)
-            {
-                Console.WriteLine($"{entity.Name} is not a consumer.");
-                return;
-            }
-
-            consumer.Consume(consumable);
-        }
-
         // Entity Methods
+
+        public static void EntityDealsWeaponEffect(IEntity entity, IEntity targetEntity)
+        {
+            if (targetEntity == null || entity == null)
+            {
+                Console.WriteLine($"Attacking entity or target entity is nothing.");
+                return;
+            }
+
+            if (targetEntity is not IWeaponTarget weaponTarget)
+            {
+                Console.WriteLine($"Connot attack {targetEntity.Name}: not an attackable entity.");
+                return;
+            }
+
+            if (entity.EquiptedItem is not IWeapon equiptedWeapon)
+            {
+                Console.WriteLine($"{entity.EquiptedItem} can not deal weapon effect to {targetEntity.Name}: not a weapon.");
+                return;
+            }
+
+            weaponTarget.TakeWeaponEffect(equiptedWeapon);
+        }
+
         public static void EntityTakesEffectFromWeapon(IEntity entity, IWeapon weapon)
         {
             if (weapon == null)

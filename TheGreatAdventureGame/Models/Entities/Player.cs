@@ -14,8 +14,20 @@ namespace TheGreatAdventureGame.Models.Entities
         public Vital Thirst { get; set; } = new Vital(100);
         public Dictionary<string, IItem> Items { get; set; } = new Dictionary<string, IItem>(StringComparer.OrdinalIgnoreCase);
 
-        public void Consume(IConsumable consumable)
+        public void Consume()
         {
+            if (this.EquiptedItem == null)
+            {
+                Console.WriteLine($"{this.Name} doesn't have an item equipted.");
+                return;
+            }
+
+            if (this.EquiptedItem is not IConsumable consumable)
+            {
+                Console.WriteLine($"{this.EquiptedItem} cannot be consumed: is not a consumable item.");
+                return;
+            }
+
             CombatManager.EntityTakesEffectFromConsumable(this, consumable);
         }
 

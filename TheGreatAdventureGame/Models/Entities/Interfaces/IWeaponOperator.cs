@@ -2,8 +2,8 @@
 
 namespace TheGreatAdventureGame.Models.Entities.Interfaces
 {
-    public interface IConsumer
+    public interface IWeaponOperator
     {
-        void Consume();
+        void DealWeaponEffect(IEntity targetEntity);
     }
 }

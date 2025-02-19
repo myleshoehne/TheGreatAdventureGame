@@ -33,40 +33,18 @@ app.MapRazorPages();
 
 //quick testing TODO: test inventory functions
 Player player = new Player();
-
 Monk enemyMonk = new Monk();
 
 Sword sword = new Sword();
 Crossbow crossbow = new Crossbow();
-Apple apple = new Apple();  
+Apple apple = new Apple();
 
-if(player is IInventory playerInventory)
-{
-    playerInventory.PickUpItem(sword);
-    playerInventory.PickUpItem(crossbow);
-
-    playerInventory.EquiptItem(sword.Name);
-    playerInventory.EquiptItem(sword.Name);
-
-    playerInventory.DropItem(crossbow.Name);
-    playerInventory.DropItem(crossbow.Name);
-}
-
-Console.WriteLine($"Player Health: {player.Health.ToString()}");
-Console.WriteLine($"Enemy Monk Health: {enemyMonk.Health.ToString()}");
+player.EquiptItem(sword.Name);
 
 
-if(player.EquiptedItem is IWeapon weapon)
-{
-    enemyMonk.TakeWeaponEffect(weapon);
-}
-else if(player.EquiptedItem is IConsumable consumable)
-{
-    player.Consume(consumable);
-}
+enemyMonk.DealWeaponEffect(player);
 
-Console.WriteLine($"Player Health: {player.Health.ToString()}");
-Console.WriteLine($"Enemy Monk Health: {enemyMonk.Health.ToString()}");
+Console.WriteLine($"{player.Name} Health: {player.Health.ToString()}");
 
 //end testing 
 

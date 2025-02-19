@@ -4,6 +4,6 @@ namespace TheGreatAdventureGame.Models.Items.Interfaces
 {
     public interface IWeapon : IItem, IEffectsVitals
     {
-        void DealEffectToEntity(IEntity entity);
+        //TODO: Possible damagetype here?
     }
 }
