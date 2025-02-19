@@ -2,8 +2,8 @@
 
 namespace TheGreatAdventureGame.Models.Items.Interfaces
 {
-    public interface IWeapon : IItem, IEffectsVitals
+    public interface IWeapon : IItem, IVitalEffects
     {
-        //TODO: Possible damagetype here?
+        NumberRange AttackPowerRange { get; set; }
     }
 }

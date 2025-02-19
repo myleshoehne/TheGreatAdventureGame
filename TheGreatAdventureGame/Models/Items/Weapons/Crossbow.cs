@@ -7,6 +7,9 @@ namespace TheGreatAdventureGame.Models.Items.Weapons
 {
     public class Crossbow : IWeapon, IBreakable
     {
+        public int ItemID => 2;
+
+        public string InstanceID => Guid.NewGuid().ToString();
         public string Name { get; set; } = "Crossbow";
         public string Description { get; set; } = "Crossbow description here..";
         public Rarity Rarity { get; set; } = ItemHelper.GenerateRarity();
@@ -14,6 +17,8 @@ namespace TheGreatAdventureGame.Models.Items.Weapons
         public SurvivalVitalType EffectSurvivalVitalType { get; set; } = SurvivalVitalType.Health;
         public NumberRange VitalEffectRange { get; set; } = new NumberRange(7, 13);
         public VitalEffectType VitalEffectType { get; set; } = VitalEffectType.Negative;
+
+        
 
         public Crossbow() { }
         public Crossbow(Rarity rarity)

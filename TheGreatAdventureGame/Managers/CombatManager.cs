@@ -47,7 +47,7 @@ namespace TheGreatAdventureGame.Managers
                 return;
             }
 
-            if (weapon is not IEffectsVitals effectiveItem)
+            if (weapon is not IVitalEffects effectiveItem)
             {
                 Console.WriteLine($"{weapon.Name} cannot be used.");
                 return;
@@ -101,7 +101,7 @@ namespace TheGreatAdventureGame.Managers
                 return;
             }
 
-            if (consumable is not IEffectsVitals effectiveItem)
+            if (consumable is not IVitalEffects effectiveItem)
             {
                 Console.WriteLine($"{consumable.Name} cannot be consumed.");
                 return;

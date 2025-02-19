@@ -2,8 +2,23 @@
 {
     public interface IItem
     {
-        string Name { get; set; }
-        string Description { get; set; }
+        /// <summary>
+        /// Gets the unique identifier for a specific item type (e.g., Sword, Crossbow, etc.).
+        /// </summary>
+        /// <remarks>
+        /// This value is predefined and remains constant for all instances of the same item type.
+        /// </remarks>
+        int ItemID { get; }
+
+        /// <summary>
+        /// Gets the unique identifier for a specific item instance.
+        /// </summary>
+        /// <remarks>
+        /// This value is dynamically generated for each individual item instance to ensure uniqueness.
+        /// </remarks>
+        string InstanceID { get; }
+        string Name { get; }
+        string Description { get; }
         /// <summary>
         /// Gets or sets the rarity level of the item.
         /// </summary>

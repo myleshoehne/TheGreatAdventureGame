@@ -23,6 +23,7 @@
     {
         Health,
         Hunger,
-        Thirst
+        Thirst, 
+        Random
     }
 }

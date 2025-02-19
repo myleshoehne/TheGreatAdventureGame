@@ -2,8 +2,8 @@
 
 namespace TheGreatAdventureGame.Models.Items.Interfaces
 {
-    public interface IConsumable : IItem, IEffectsVitals
+    public interface IConsumable : IItem, IVitalEffects
     {
-        //TODO: Possible damagetype here?
+        NumberRange NutritionValueRange { get; set; }
     }
 }

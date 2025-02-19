@@ -3,7 +3,7 @@ using TheGreatAdventureGame.Managers;
 using TheGreatAdventureGame.Models.Entities.Interfaces;
 using TheGreatAdventureGame.Models.Items.Interfaces;
 
-namespace TheGreatAdventureGame.Models.Items.Food
+namespace TheGreatAdventureGame.Models.Items.Consumables.Food
 {
     public class Apple : IConsumable, IStackable
     {
@@ -14,11 +14,11 @@ namespace TheGreatAdventureGame.Models.Items.Food
         public NumberRange VitalEffectRange { get; set; } = new NumberRange(5, 10);
         public VitalEffectType VitalEffectType { get; set; } = VitalEffectType.Positive;
         public SurvivalVitalType EffectSurvivalVitalType { get; set; } = SurvivalVitalType.Health;
-        
+
         public Apple() { }
         public Apple(Rarity rarity)
         {
-            this.Rarity = rarity;
+            Rarity = rarity;
         }
     }
 }

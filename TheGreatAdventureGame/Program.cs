@@ -3,7 +3,7 @@ using TheGreatAdventureGame.Models;
 using TheGreatAdventureGame.Models.Entities;
 using TheGreatAdventureGame.Models.Entities.Interfaces;
 using TheGreatAdventureGame.Models.Items;
-using TheGreatAdventureGame.Models.Items.Food;
+using TheGreatAdventureGame.Models.Items.Consumables.Food;
 using TheGreatAdventureGame.Models.Items.Interfaces;
 using TheGreatAdventureGame.Models.Items.Weapons;
 
