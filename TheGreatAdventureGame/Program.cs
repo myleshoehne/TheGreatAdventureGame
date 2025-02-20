@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 using TheGreatAdventureGame.Models;
-using TheGreatAdventureGame.Models.Entities;
+using TheGreatAdventureGame.Models.Entities.Enemies;
 using TheGreatAdventureGame.Models.Entities.Interfaces;
 using TheGreatAdventureGame.Models.Items;
 using TheGreatAdventureGame.Models.Items.Consumables.Food;
@@ -36,19 +36,20 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 //quick testing TODO: test inventory functions
-Player player = new Player();
+//Player player = new Player();
 Monk enemyMonk = new Monk();
 
 Sword sword = new Sword();
 Crossbow crossbow = new Crossbow();
 Apple apple = new Apple();
+Apple apple2 = new Apple();
 
-player.EquiptItem(sword.Name);
+//player.EquiptItem(sword.Name);
 
 
-enemyMonk.DealWeaponEffect(player);
+//enemyMonk.DealWeaponEffect(player);
 
-Console.WriteLine($"{player.Name} Health: {player.Health.ToString()}");
+//Console.WriteLine($"{player.Name} Health: {player.Health.ToString()}");
 
 //end testing 
 

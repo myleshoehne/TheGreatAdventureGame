@@ -2,8 +2,9 @@
 
 namespace TheGreatAdventureGame.Models.Entities.Interfaces
 {
-    public interface IWeaponOperator
+    public interface ICombatant
     {
         void DealWeaponEffect(IEntity targetEntity);
+        void TakeWeaponEffect(string weaponInstanceId);
     }
 }

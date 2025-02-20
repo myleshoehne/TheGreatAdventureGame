@@ -2,7 +2,7 @@
 {
     public interface IVitalEffects
     {
-        VitalEffectType EffectType { get; set; }
-        SurvivalVitalType TargetVital { get; set; }
+        VitalImpactType ImpactType { get; set; }
+        VitalCategoryType TargetVital { get; set; }
     }
 }

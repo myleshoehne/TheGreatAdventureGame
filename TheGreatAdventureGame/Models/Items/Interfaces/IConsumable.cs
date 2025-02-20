@@ -2,7 +2,7 @@
 
 namespace TheGreatAdventureGame.Models.Items.Interfaces
 {
-    public interface IConsumable : IItem, IVitalEffects
+    public interface IConsumable : IVitalEffects
     {
         NumberRange NutritionValueRange { get; set; }
     }

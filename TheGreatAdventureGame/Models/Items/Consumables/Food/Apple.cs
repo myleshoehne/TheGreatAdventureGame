@@ -5,20 +5,17 @@ using TheGreatAdventureGame.Models.Items.Interfaces;
 
 namespace TheGreatAdventureGame.Models.Items.Consumables.Food
 {
-    public class Apple : IConsumable, IStackable
+    public class Apple : ConsumableBase, IStackable
     {
-        public string Name { get; set; } = "Apple";
-        public string Description { get; set; } = "Apple description here...";
-        public Rarity Rarity { get; set; } = ItemHelper.GenerateRarity();
+        public override int ItemID => 3;
+        public override string Name { get; } = "Apple";
+        public override string Description { get; } = "Apple description here...";
         public Vital Quantity { get; set; } = new Vital(1);
-        public NumberRange VitalEffectRange { get; set; } = new NumberRange(5, 10);
-        public VitalEffectType VitalEffectType { get; set; } = VitalEffectType.Positive;
-        public SurvivalVitalType EffectSurvivalVitalType { get; set; } = SurvivalVitalType.Health;
+        public override NumberRange NutritionValueRange { get; set; } = new NumberRange(5, 10);
 
         public Apple() { }
-        public Apple(Rarity rarity)
+        public Apple(Rarity rarity) : base(rarity)
         {
-            Rarity = rarity;
         }
     }
 }

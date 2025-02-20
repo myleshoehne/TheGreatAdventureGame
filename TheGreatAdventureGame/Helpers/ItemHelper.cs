@@ -44,13 +44,14 @@ namespace TheGreatAdventureGame.Helpers
         }
 
 
-        public static VitalEffectType GetRandomVitalEffectType()
+        public static VitalImpactType GetRandomVitalImpactType()
         {
+            //TODO: improve this to be dynamic so if there are any new VitalImpactTypes added we don't have to change this
             var random = new Random();
             int roll = random.Next(0, 2); // generate 0 or 1
 
-            if (roll == 1) return VitalEffectType.Positive;
-            return VitalEffectType.Negative;
+            if (roll == 1) return VitalImpactType.Positive;
+            return VitalImpactType.Negative;
         }
     }
 }

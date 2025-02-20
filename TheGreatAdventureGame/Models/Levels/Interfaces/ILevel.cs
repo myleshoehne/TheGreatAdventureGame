@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.Features;
-using TheGreatAdventureGame.Models.Entities;
 using TheGreatAdventureGame.Models.Entities.Interfaces;
+using TheGreatAdventureGame.Models.Entities.Players;
 using TheGreatAdventureGame.Models.Items.Interfaces;
 
 namespace TheGreatAdventureGame.Models.Levels.Interfaces

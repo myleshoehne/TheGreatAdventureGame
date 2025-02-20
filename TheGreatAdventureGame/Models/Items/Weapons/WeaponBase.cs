@@ -3,31 +3,17 @@ using TheGreatAdventureGame.Models.Items.Interfaces;
 
 namespace TheGreatAdventureGame.Models.Items.Weapons
 {
-    public abstract class WeaponBase : IWeapon
+    public abstract class WeaponBase : ItemBase, IWeapon
     {
-        //TODO: make item base with props that are in weapon/consumable base
-        public int ItemID { get; } 
-        public string InstanceID => Guid.NewGuid().ToString();
-        public string Name { get; } 
-        public string Description { get; }
-        public Rarity Rarity { get; set; } = ItemHelper.GenerateRarity();
-        public abstract NumberRange AttackPowerRange { get; set; }
-        public VitalEffectType EffectType { get; set; } = VitalEffectType.Positive;
-        public SurvivalVitalType TargetVital { get; set; } = SurvivalVitalType.Health;
+        public abstract NumberRange AttackImpactRange { get; set; }
+        public virtual VitalImpactType ImpactType { get; set; } = VitalImpactType.Negative;
+        public virtual VitalCategoryType TargetVital { get; set; } = VitalCategoryType.Health;
 
-        protected WeaponBase(string name, string desc, int itemId)
+        protected WeaponBase() { }
+        protected WeaponBase(Rarity rarity) : base(rarity)
         {
-            this.Name = name;
-            this.Description = desc;
-            this.ItemID = itemId;
         }
 
-        protected WeaponBase(string name, string desc, int itemId, Rarity rarity)
-        {
-            this.Name = name;
-            this.Description = desc;
-            this.ItemID = itemId;
-            this.Rarity = rarity;
-        }
+        //TODO: add more contructors
     }
 }

@@ -1,5 +1,5 @@
-﻿using TheGreatAdventureGame.Models.Entities;
-using TheGreatAdventureGame.Models.Items.Food;
+﻿using TheGreatAdventureGame.Models.Entities.Players;
+using TheGreatAdventureGame.Models.Items.Consumables.Food;
 using TheGreatAdventureGame.Models.Items.Interfaces;
 using TheGreatAdventureGame.Models.Items.Weapons;
 using TheGreatAdventureGame.Models.Levels.Interfaces;

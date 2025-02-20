@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
-using TheGreatAdventureGame.Models.Entities;
+using TheGreatAdventureGame.Models.Entities.Players;
 
 namespace TheGreatAdventureGame.Pages
 {

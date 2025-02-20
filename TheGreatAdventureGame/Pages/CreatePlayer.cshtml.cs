@@ -27,23 +27,23 @@ namespace TheGreatAdventureGame.Pages
             
         }
 
-        public IActionResult OnPost()
+        public void OnPost()
         {
-            IWeapon SelectedWeapon = StartingWeaponOptions.FirstOrDefault(w => w.Name.Equals(StartingWeaponName, StringComparison.OrdinalIgnoreCase));
+            //IWeapon SelectedWeapon = StartingWeaponOptions.FirstOrDefault(w => w.Name.Equals(StartingWeaponName, StringComparison.OrdinalIgnoreCase));
 
-            //Build new player based on inputs
-            Player NewPlayer = new Player()
-            {
-                Name = PlayerName,
-                EquiptedItem = SelectedWeapon,
-            };
+            ////Build new player based on inputs
+            //Player NewPlayer = new Player()
+            //{
+            //    Name = PlayerName,
+            //    EquiptedItem = SelectedWeapon,
+            //};
 
-            // Store new player in session
-            string serializedPlayer = JsonSerializer.Serialize(NewPlayer);
-            HttpContext.Session.SetString("Player", serializedPlayer);
+            //// Store new player in session
+            //string serializedPlayer = JsonSerializer.Serialize(NewPlayer);
+            //HttpContext.Session.SetString("Player", serializedPlayer);
 
-            // Redirect
-            return RedirectToPage("/ConfirmCreatedPlayer", NewPlayer);
+            //// Redirect
+            //return RedirectToPage("/ConfirmCreatedPlayer", NewPlayer);
         }
     }
 }
