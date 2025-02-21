@@ -1,6 +1,8 @@
-﻿using TheGreatAdventureGame.Models;
+﻿using System.CodeDom.Compiler;
+using TheGreatAdventureGame.Models;
 using TheGreatAdventureGame.Models.Entities;
 using TheGreatAdventureGame.Models.Items;
+using TheGreatAdventureGame.Models.Items.Interfaces;
 
 namespace TheGreatAdventureGame.Helpers
 {
@@ -53,5 +55,7 @@ namespace TheGreatAdventureGame.Helpers
             if (roll == 1) return VitalImpactType.Positive;
             return VitalImpactType.Negative;
         }
+
+        
     }
 }

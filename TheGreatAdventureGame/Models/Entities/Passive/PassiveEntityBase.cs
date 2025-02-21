@@ -3,6 +3,7 @@
 namespace TheGreatAdventureGame.Models.Entities.Passive
 {
     public class PassiveEntityBase
+
     {
     }
 }

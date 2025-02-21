@@ -19,42 +19,30 @@ namespace TheGreatAdventureGame.Managers
             Console.WriteLine($"{entity.Name} took weapon affect from item with id: {weaponInstanceId}.");
         }
 
-        public static void EntityTakesEffectFromConsumable(IEntity affectedEntity, string consumableInstanceId)
+        public static void EntityTakesEffectFromConsumable(IConsumer consumer, IConsumable consumable)
         {
-            //TODO: implement consume affect logic
-            Console.WriteLine($"{affectedEntity.Name} consumed item with id: {consumableInstanceId}.");
+            IEntity entity = (IEntity)consumer;
+            IItem item = (IItem)consumable;
+
+            int amount = consumable.NutritionValueRange.GetRandomValueFromRarityRange(item.Rarity);
+
+            //TODO: Call private method
         }
 
-        public static void EntityHealsSelf(IEntity entity)
+        public static void EntityHealsSelf(ISelfHealing entity)
         {
             //TODO: implement heal self logic
-            Console.WriteLine($"{entity.Name} haled self.");
+            Console.WriteLine($"Entity haled self.");
         }
 
-        private static void ApplyVitalEffect(Vital entityVital, int amount, VitalImpactType vitalImpactType)
+
+        private static void ApplyImpact()
         {
-            switch (vitalImpactType)
-            {
-                case VitalImpactType.Positive:
-                    entityVital.Add(amount);
-                    break;
-                case VitalImpactType.Negative:
-                    entityVital.Subtract(amount);
-                    break;
-                case VitalImpactType.Random:
-                    VitalImpactType randomEffect = ItemHelper.GetRandomVitalImpactType();
-                    if (randomEffect == VitalImpactType.Positive)
-                    {
-                        entityVital.Add(amount);
-                    }
-                    else
-                    {
-                        entityVital.Subtract(amount);
-                    }
-                    break;
-                default:
-                    throw new ArgumentException($"{vitalImpactType} is not a valid effect type.");
-            }
+            //TODO: this method (rename maybe)
+        }
+        private static void ApplyImpactType()
+        {
+            //TODO: this method (rename maybe)
         }
     }
 }

@@ -7,7 +7,7 @@ namespace TheGreatAdventureGame.Models.Entities
     {
         public abstract int EntityID { get; }
         public string InstanceID => Guid.NewGuid().ToString();
-        public abstract string Name { get; }
+        public abstract string Name { get; set; }
         public abstract string Description { get; }
         public Vital Health { get; set; }
         public virtual string? EquiptItemInstanceID { get; set; } //TODO: make ItemHelper.GenerateRandomItemId();

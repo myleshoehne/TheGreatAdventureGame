@@ -5,8 +5,15 @@ using TheGreatAdventureGame.Models.Items.Interfaces;
 
 namespace TheGreatAdventureGame.Models.Entities.Players
 {
-    public class Player
+    public class Player : PlayerEntityBase
     {
- 
+        public override int EntityID => 1;
+
+        public override string Name { get; set; }
+
+        public override string Description => "Player desc...";
+
+        public Player() { }
+        public Player(int maxHealth, int maxHunger, int maxThirst) : base(maxHealth, maxHunger, maxThirst) { }
     }
 }
