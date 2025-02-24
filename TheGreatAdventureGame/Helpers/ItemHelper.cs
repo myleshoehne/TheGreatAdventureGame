@@ -45,17 +45,33 @@ namespace TheGreatAdventureGame.Helpers
             return 3m;
         }
 
-
-        public static VitalImpactType GetRandomVitalImpactType()
+        /// <summary>
+        /// Gets a random value from the specified enum type. If the randomly selected value is "Random", 
+        /// the method will recursively call itself to get a new random value until a non-"Random" value is selected.
+        /// </summary>
+        /// <typeparam name="T">The enum type from which to select a random value. The type must be an enum.</typeparam>
+        /// <returns>A randomly selected value of the specified enum type, excluding the value "Random".</returns>
+        /// <exception cref="InvalidOperationException">Thrown if an invalid enum value is encountered during the process.</exception>
+        public static T GetRandomEnumValue<T>() where T : Enum
         {
-            //TODO: improve this to be dynamic so if there are any new VitalImpactTypes added we don't have to change this
-            var random = new Random();
-            int roll = random.Next(0, 2); // generate 0 or 1
+            int roll = GetEnumRoll<T>();
 
-            if (roll == 1) return VitalImpactType.Positive;
-            return VitalImpactType.Negative;
+            T? enumValue = (T?)Enum.GetValues(typeof(T)).GetValue(roll);
+
+            if(enumValue == null || enumValue.Equals(Enum.GetValues(typeof(T)).Cast<T>().FirstOrDefault(v => v.ToString() == "Random")))
+            {
+                return GetRandomEnumValue<T>();
+            }
+
+            return enumValue;
         }
 
-        
+        private static int GetEnumRoll<T>() where T : Enum
+        {
+            int EnumLength = Enum.GetValues(typeof(T)).Length;
+
+            Random random = new Random();
+            return random.Next(0, EnumLength); 
+        } 
     }
 }

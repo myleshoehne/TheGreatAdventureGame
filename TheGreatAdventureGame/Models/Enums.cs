@@ -14,25 +14,23 @@
     }
 
     /// <summary>
-    /// Represents the type of impact or change applied to a vital category (e.g., health, hunger).
-    /// This determines whether the effect improves, worsens, or has an unpredictable outcome.
+    /// Defines how an item affects a vital stat (e.g., improves, worsens, or is unpredictable).
     /// </summary>
-    public enum VitalImpactType
+    public enum EffectType
     {
-        Positive, 
+        Positive,
         Negative,
         Random
     }
 
     /// <summary>
-    /// Represents the category of a vital that is being affected by an item.
-    /// Vital categories include essential survival stats such as health, hunger, and thirst.
+    /// Represents a type of vital stat that an item can affect (e.g., health, hunger, thirst).
     /// </summary>
-    public enum VitalCategoryType
+    public enum VitalType
     {
         Health,
         Hunger,
-        Thirst, 
+        Thirst,
         Random
     }
 }

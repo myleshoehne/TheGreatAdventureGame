@@ -21,10 +21,18 @@
         public void Add(int num)
         {
             this.CurrentHP += num;
+            if(this.CurrentHP > this.MaxHP)
+            {
+                this.CurrentHP = this.MaxHP;
+            }
         }
         public void Subtract(int num)
         {
             this.CurrentHP -= num;
+            if(this.CurrentHP < 0)
+            {
+                this.CurrentHP = 0;
+            }
         }
         public void Deplete()
         {

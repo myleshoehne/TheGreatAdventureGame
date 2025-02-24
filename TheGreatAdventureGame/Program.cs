@@ -1,7 +1,9 @@
 using System.Runtime.CompilerServices;
+using TheGreatAdventureGame.Helpers;
 using TheGreatAdventureGame.Models;
 using TheGreatAdventureGame.Models.Entities.Enemies;
 using TheGreatAdventureGame.Models.Entities.Interfaces;
+using TheGreatAdventureGame.Models.Entities.Players;
 using TheGreatAdventureGame.Models.Items;
 using TheGreatAdventureGame.Models.Items.Consumables.Food;
 using TheGreatAdventureGame.Models.Items.Interfaces;
@@ -44,6 +46,17 @@ Crossbow crossbow = new Crossbow();
 Apple apple = new Apple();
 Apple apple2 = new Apple();
 
+Player player = new Player();
+
+
+Console.WriteLine($"Monk Health: {enemyMonk.Health.ToString()}");
+Console.WriteLine($"Player Health: {player.Health.ToString()}");
+player.DealWeaponEffect(enemyMonk);
+enemyMonk.DealWeaponEffect(player);
+Console.WriteLine($"Monk Health: {enemyMonk.Health.ToString()}");
+Console.WriteLine($"Player Health: {player.Health.ToString()}");
+player.Consume();
+Console.WriteLine($"Player Health: {player.Health.ToString()}");
 //player.EquiptItem(sword.Name);
 
 

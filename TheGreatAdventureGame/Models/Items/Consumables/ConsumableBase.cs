@@ -6,8 +6,8 @@ namespace TheGreatAdventureGame.Models.Items.Consumables
     public abstract class ConsumableBase : ItemBase, IConsumable
     {
         public abstract NumberRange NutritionValueRange { get; set; }
-        public virtual VitalImpactType ImpactType { get; set; } = VitalImpactType.Positive;
-        public virtual VitalCategoryType TargetVital { get; set; } = VitalCategoryType.Health;
+        public virtual EffectType EffectType { get; set; } = EffectType.Positive;
+        public virtual VitalType TargetVital { get; set; } = VitalType.Health;
 
         protected ConsumableBase() { }
         protected ConsumableBase(Rarity rarity) : base(rarity) { }

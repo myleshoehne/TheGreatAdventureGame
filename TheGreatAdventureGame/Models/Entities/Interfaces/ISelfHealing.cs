@@ -2,7 +2,7 @@
 {
     public interface ISelfHealing
     {
-        NumberRange HealImpactRange { get; set; }
+        NumberRange HealEffectRange { get; set; }
         void HealSelf();
     }
 }

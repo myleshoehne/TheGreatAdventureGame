@@ -4,6 +4,6 @@ namespace TheGreatAdventureGame.Models.Items.Interfaces
 {
     public interface IWeapon : IVitalEffects
     {
-        NumberRange AttackImpactRange { get; set; }
+        NumberRange AttackEffectRange { get; set; }
     }
 }

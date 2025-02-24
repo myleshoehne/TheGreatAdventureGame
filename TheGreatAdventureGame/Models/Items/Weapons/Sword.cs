@@ -10,7 +10,7 @@ namespace TheGreatAdventureGame.Models.Items.Weapons
         public override int ItemID => 1;
         public override string Name => "Sword";
         public override string Description => "Sword description here...";
-        public override NumberRange AttackImpactRange { get; set; } = new NumberRange(5, 10);
+        public override NumberRange AttackEffectRange { get; set; } = new NumberRange(5, 10);
         public Vital Durability { get; set; } = new Vital(100);
         
         public Sword() { }
