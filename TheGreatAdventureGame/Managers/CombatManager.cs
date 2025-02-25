@@ -11,13 +11,27 @@ namespace TheGreatAdventureGame.Managers
 {
     public class CombatManager
     {
-        //TODO: make passed in things nullable and default to what the player has equipt if null is passed in 
         public static void EntityDealsWeaponEffect(ICombatant targetCombatant, IWeapon? weapon = null)
         {
+            IEntity combatEntity = (IEntity)targetCombatant;
             if(weapon == null)
             {
-                // Default to equipt item
-                weapon = new Sword();//TODO: fetch from db
+                if (combatEntity.EquiptItem == null) 
+                {
+                    Console.WriteLine($"{combatEntity.Name} doesn't have an item equipted.");
+                    return;
+                }
+
+                if(combatEntity.EquiptItem is IWeapon equiptWeapon)
+                {
+                    // Default weapon to equipted weapon
+                    weapon = equiptWeapon;
+                }
+                else
+                {
+                    Console.WriteLine($"Canoot attack with {combatEntity.EquiptItem}, not a weapon.");
+                    return;
+                }
             }
 
             EntityTakesEffectFromWeapon(targetCombatant, weapon);
@@ -33,13 +47,27 @@ namespace TheGreatAdventureGame.Managers
 
         public static void EntityTakesEffectFromConsumable(IConsumer consumer, IConsumable? consumable = null)
         {
-            if(consumable == null)
-            {
-                // Default to equipt item
-                consumable = new Apple(Rarity.Legendary);//TODO: fetch from db
-            }
-
             IEntity consumerEntity = (IEntity)consumer;
+            if (consumable == null)
+            {
+                if(consumerEntity.EquiptItem == null)
+                {
+                    Console.WriteLine($"{consumerEntity.Name} doesn't have an item equipted.");
+                    return;
+                }
+
+                if(consumerEntity.EquiptItem is IConsumable equiptConsumable)
+                {
+                    // Default consumable to equipted consumable
+                    consumable = equiptConsumable;
+                }
+                else
+                {
+                    Console.WriteLine($"Canoot consume {consumerEntity.EquiptItem}, not a consumable.");
+                    return;
+                }
+            }
+            
             IItem consumableItem = (IItem)consumable;
 
             ApplyVitalEffectFromItem(consumerEntity, consumableItem);
@@ -52,7 +80,7 @@ namespace TheGreatAdventureGame.Managers
             entity.Health.Add(amount);
         }
 
-
+        //
         public static void ApplyVitalEffectFromItem(IEntity entity, IItem item, int? amount = null)
         {
             if(item is IWeapon weapon)

@@ -6,16 +6,17 @@ namespace TheGreatAdventureGame.Models.Entities.Players
 {
     public abstract class PlayerEntityBase : EntityBase, ICombatant, IConsumer, IInventory, ISurvivalVitals
     {
-        public Dictionary<string, string> Inventory => new();
+        public Dictionary<string, IItem> Inventory => new();
         public virtual Vital Hunger { get; set; }
         public virtual Vital Thirst { get; set; }
 
+        //TODO: allow these to reach out to new InventoryManager methods
         public void Consume(IConsumable? consumable = null) => CombatManager.EntityTakesEffectFromConsumable(this, consumable);
         public void DealWeaponEffect(ICombatant targetEntity) => CombatManager.EntityDealsWeaponEffect(targetEntity);
         public void TakeWeaponEffect(IWeapon usedWeapon) => CombatManager.EntityTakesEffectFromWeapon(this, usedWeapon);
-        public void DropItem(string itemInstanceId) => InventoryManager.EntityDropsItem(this, itemInstanceId);
-        public void EquiptItem(string itemInstanceId) => InventoryManager.EntityEquiptsItem(this, itemInstanceId);
-        public void PickUpItem(string itemInstanceId) => InventoryManager.EntityPicksUpItem(this, itemInstanceId);
+        public void DropItem(IItem? item) => InventoryManager.EntityDropsItem(this, item);
+        public void EquiptItem(IItem item) => InventoryManager.EntityEquiptsItem(this, item);
+        public void PickUpItem(IItem item) => InventoryManager.EntityPicksUpItem(this, item);
 
         protected PlayerEntityBase()
         {

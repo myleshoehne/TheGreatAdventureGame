@@ -8,7 +8,7 @@
         /// <remarks>
         /// This value is predefined and remains constant for all instances of the same item type.
         /// </remarks>
-        int ItemID { get; }
+        string ItemTypeID { get; }
 
         /// <summary>
         /// Gets the unique identifier for a specific item instance.

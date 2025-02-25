@@ -10,7 +10,7 @@ namespace TheGreatAdventureGame.Models.Entities.Interfaces
         /// <remarks>
         /// This value is predefined and remains constant for all instances of the same entity type.
         /// </remarks>
-        int EntityID { get; }
+        string EntityTypeID { get; }
 
         /// <summary>
         /// Gets the unique identifier for a specific entity instance.
@@ -22,7 +22,7 @@ namespace TheGreatAdventureGame.Models.Entities.Interfaces
         string Name { get; }
         string Description { get; }
         Vital Health { get; set; }
-        string? EquiptItemInstanceID { get; set; }
+        IItem? EquiptItem { get; set; }
 
         //TODO: make EquiptItem prop that fetches the item from the itemID
     }

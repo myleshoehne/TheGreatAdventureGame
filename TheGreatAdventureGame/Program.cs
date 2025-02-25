@@ -48,6 +48,13 @@ Apple apple2 = new Apple();
 
 Player player = new Player();
 
+player.PickUpItem(sword);
+player.PickUpItem(apple);
+
+player.EquiptItem(apple2);
+player.Consume();
+player.EquiptItem(apple2);
+player.DropItem(apple);
 
 Console.WriteLine($"Monk Health: {enemyMonk.Health.ToString()}");
 Console.WriteLine($"Player Health: {player.Health.ToString()}");

@@ -2,49 +2,75 @@
 {
     public class Vital
     {
-        public int CurrentHP { get; set; }
-        public int MaxHP { get; set; }
+        public int Current { get; set; }
+        public int Max { get; set; }
         public bool IsDepleted
         {
             get
             {
-                return this.CurrentHP < 1;
+                return this.Current < 1;
+            }
+        }
+        public bool IsAtMax
+        {
+            get
+            {
+                return this.Current >= this.Max;
             }
         }
 
         public Vital(int maxHP)
         {
-            this.CurrentHP = maxHP;
-            this.MaxHP = maxHP;
+            this.Current = maxHP;
+            this.Max = maxHP;
         }
 
-        public void Add(int num)
+        public Vital(int startHP, int maxHP)
         {
-            this.CurrentHP += num;
-            if(this.CurrentHP > this.MaxHP)
+            this.Current = startHP;
+            this.Max = maxHP;
+        }
+
+        /// <summary>
+        /// Adds the specified amount to the current value. If the result exceeds the maximum limit, 
+        /// the current value is capped at the maximum, and the overflow amount is returned.
+        /// </summary>
+        /// <param name="num">The amount to add to the current value.</param>
+        /// <returns>
+        /// The leftover amount if the addition exceeds the maximum limit; otherwise, returns null.
+        /// </returns>
+        public int? Add(int num)
+        {
+            this.Current += num;
+
+            int? leftOver = null;
+            if(this.Current > this.Max)
             {
-                this.CurrentHP = this.MaxHP;
+                leftOver = this.Current - this.Max; 
+                this.Current = this.Max;
+                 
             }
+            return leftOver;
         }
         public void Subtract(int num)
         {
-            this.CurrentHP -= num;
-            if(this.CurrentHP < 0)
+            this.Current -= num;
+            if(this.Current < 0)
             {
-                this.CurrentHP = 0;
+                this.Current = 0;
             }
         }
         public void Deplete()
         {
-            this.CurrentHP = 0;
+            this.Current = 0;
         }
         public void Reset()
         {
-            this.CurrentHP = this.MaxHP;
+            this.Current = this.Max;
         }
         public override string ToString()
         {
-            return $"{CurrentHP}/{MaxHP}";
+            return $"{Current}/{Max}";
         }
     }
 }

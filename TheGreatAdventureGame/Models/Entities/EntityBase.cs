@@ -5,12 +5,12 @@ namespace TheGreatAdventureGame.Models.Entities
 {
     public abstract class EntityBase : IEntity
     {
-        public abstract int EntityID { get; }
+        public string EntityTypeID => this.GetType().Name.ToLower();
         public string InstanceID => Guid.NewGuid().ToString();
         public abstract string Name { get; set; }
         public abstract string Description { get; }
         public Vital Health { get; set; }
-        public virtual string? EquiptItemInstanceID { get; set; } //TODO: make ItemHelper.GenerateRandomItemId();
+        public virtual IItem? EquiptItem { get; set; } //TODO: make ItemHelper.GenerateRandomItemId();
 
         protected EntityBase() 
         {

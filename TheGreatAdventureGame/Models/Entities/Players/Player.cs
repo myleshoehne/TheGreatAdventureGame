@@ -7,8 +7,6 @@ namespace TheGreatAdventureGame.Models.Entities.Players
 {
     public class Player : PlayerEntityBase
     {
-        public override int EntityID => 1;
-
         public override string Name { get; set; }
 
         public override string Description => "Player desc...";

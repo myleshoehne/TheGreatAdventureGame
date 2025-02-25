@@ -5,7 +5,7 @@ namespace TheGreatAdventureGame.Models.Items
 {
     public abstract class ItemBase : IItem
     {
-        public abstract int ItemID { get; }
+        public string ItemTypeID => $"{GetType().Name.ToLower()}_{this.Rarity.ToString().ToLower()}";
         public string InstanceID => Guid.NewGuid().ToString();
         public abstract string Name { get; }
         public abstract string Description { get; }

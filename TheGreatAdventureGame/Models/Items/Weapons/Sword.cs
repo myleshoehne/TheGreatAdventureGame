@@ -6,8 +6,7 @@ using TheGreatAdventureGame.Models.Items.Interfaces;
 namespace TheGreatAdventureGame.Models.Items.Weapons
 {
     public class Sword : WeaponBase, IBreakable
-    {
-        public override int ItemID => 1;
+    {    
         public override string Name => "Sword";
         public override string Description => "Sword description here...";
         public override NumberRange AttackEffectRange { get; set; } = new NumberRange(5, 10);
