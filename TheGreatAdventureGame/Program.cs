@@ -8,16 +8,21 @@ using TheGreatAdventureGame.Models.Items;
 using TheGreatAdventureGame.Models.Items.Consumables.Food;
 using TheGreatAdventureGame.Models.Items.Interfaces;
 using TheGreatAdventureGame.Models.Items.Weapons;
+using TheGreatAdventureGame.State;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
 
 //Add Sessions 
 builder.Services.AddSession();
 builder.Services.AddDistributedMemoryCache(); // required for session storage
 
+
+// Add game state
+builder.Services.AddSingleton<GameState>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,6 +39,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 
