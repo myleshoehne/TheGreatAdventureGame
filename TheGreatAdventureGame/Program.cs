@@ -43,13 +43,22 @@ Monk enemyMonk = new Monk();
 
 Sword sword = new Sword();
 Crossbow crossbow = new Crossbow();
-Apple apple = new Apple();
-Apple apple2 = new Apple();
+Apple apple = new Apple(Rarity.Rare);
+Apple apple2 = new Apple(Rarity.Rare);
+Apple apple3 = new Apple(Rarity.Rare);
+Apple apple4 = new Apple(Rarity.Rare);
+Apple apple5 = new Apple(Rarity.Rare);
+Apple apple6 = new Apple(Rarity.Rare);
 
 Player player = new Player();
 
 player.PickUpItem(sword);
 player.PickUpItem(apple);
+player.PickUpItem(apple2);
+player.PickUpItem(apple3);
+player.PickUpItem(apple4);
+player.PickUpItem(apple5);
+player.PickUpItem(apple6);
 
 player.EquiptItem(apple2);
 player.Consume();
@@ -58,7 +67,9 @@ player.DropItem(apple);
 
 Console.WriteLine($"Monk Health: {enemyMonk.Health.ToString()}");
 Console.WriteLine($"Player Health: {player.Health.ToString()}");
+player.EquiptItem(sword);
 player.DealWeaponEffect(enemyMonk);
+
 enemyMonk.DealWeaponEffect(player);
 Console.WriteLine($"Monk Health: {enemyMonk.Health.ToString()}");
 Console.WriteLine($"Player Health: {player.Health.ToString()}");

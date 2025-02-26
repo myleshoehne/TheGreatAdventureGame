@@ -14,6 +14,7 @@ namespace TheGreatAdventureGame.Managers
             {
                 // Entity doesn't have item in inventory
                 Console.WriteLine($"{entity.Name} does not have {item.Name} in inventory.");
+                return;
             }
 
             entity.EquiptItem = inventoryEntity.Inventory[item.ItemTypeID];

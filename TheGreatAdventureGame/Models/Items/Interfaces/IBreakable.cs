@@ -3,5 +3,6 @@
     public interface IBreakable
     {
         Vital Durability { get; set; }
+        NumberRange DurabilityEffectRange { get; set; }
     }
 }

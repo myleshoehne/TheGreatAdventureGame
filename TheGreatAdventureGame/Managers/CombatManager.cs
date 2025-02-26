@@ -11,9 +11,9 @@ namespace TheGreatAdventureGame.Managers
 {
     public class CombatManager
     {
-        public static void EntityDealsWeaponEffect(ICombatant targetCombatant, IWeapon? weapon = null)
+        public static void EntityDealsWeaponEffect(ICombatant combatant, ICombatant targetCombatant, IWeapon? weapon = null)
         {
-            IEntity combatEntity = (IEntity)targetCombatant;
+            IEntity combatEntity = (IEntity)combatant;
             if(weapon == null)
             {
                 if (combatEntity.EquiptItem == null) 
@@ -80,7 +80,6 @@ namespace TheGreatAdventureGame.Managers
             entity.Health.Add(amount);
         }
 
-        //
         public static void ApplyVitalEffectFromItem(IEntity entity, IItem item, int? amount = null)
         {
             if(item is IWeapon weapon)
@@ -94,6 +93,7 @@ namespace TheGreatAdventureGame.Managers
                 if (entity is ICombatant)
                 {
                     ApplyVitalEffect(amount.Value, weapon.TargetVital, weapon.EffectType, entity);
+                    ModifyItemCondition(item);
                 }
                 else
                 {
@@ -112,6 +112,7 @@ namespace TheGreatAdventureGame.Managers
                 if (entity is IConsumer)
                 {
                     ApplyVitalEffect(amount.Value, consumable.TargetVital, consumable.EffectType, entity);
+                    ModifyItemCondition(item);
                 }
                 else
                 {
@@ -174,6 +175,8 @@ namespace TheGreatAdventureGame.Managers
             {
                 case EffectType.Positive:
                     entityTargetVital.Add(amount);
+
+                    
                     break;
                 case EffectType.Negative:
                     entityTargetVital.Subtract(amount);
@@ -195,5 +198,37 @@ namespace TheGreatAdventureGame.Managers
                     throw new ArgumentException($"Invalid vital effect type: {vitalEffectType}");
             }
         }
+
+        private static void ModifyItemCondition(IItem item, EffectType? effectType = EffectType.Negative, int? effectAmount = null)
+        {
+            if(item is IBreakable breakableItem)
+            {
+                if(!effectAmount.HasValue)
+                {
+                    effectAmount = breakableItem.DurabilityEffectRange.GetRandomValueFromBaseRange();
+                }
+
+                if(effectType == EffectType.Negative)
+                {
+                    breakableItem.Durability.Subtract(effectAmount.Value);
+                    return;
+                }
+
+                breakableItem.Durability.Add(effectAmount.Value);
+            }
+            else if(item is IStackable stackableItem)
+            {
+                if (effectType == EffectType.Negative)
+                {
+                    stackableItem.Quantity.Subtract(1);
+                    return;
+                }
+
+                stackableItem.Quantity.Add(1);
+            }
+        }
+
     }
+
+    
 }

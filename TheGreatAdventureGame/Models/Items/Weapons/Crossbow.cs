@@ -11,7 +11,7 @@ namespace TheGreatAdventureGame.Models.Items.Weapons
         public override string Description { get; } = "Crossbow description here..";
         public override NumberRange AttackEffectRange { get; set; } = new NumberRange(7, 13);
         public Vital Durability { get; set; } = new Vital(100);
-        
+        public virtual NumberRange DurabilityEffectRange { get; set; } = new NumberRange(1, 5);
 
         public Crossbow() { }
         public Crossbow(Rarity rarity)
