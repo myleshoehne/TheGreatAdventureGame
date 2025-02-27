@@ -11,7 +11,13 @@ namespace TheGreatAdventureGame.Models.Entities.Players
 
         public override string Description => "Player desc...";
 
-        public Player() { }
-        public Player(int maxHealth, int maxHunger, int maxThirst) : base(maxHealth, maxHunger, maxThirst) { }
+        public Player(string name)
+        {
+            this.Name = name;
+        }
+        public Player(string name, int maxHealth, int maxHunger, int maxThirst) : base(maxHealth, maxHunger, maxThirst)
+        {
+            this.Name = name;
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace TheGreatAdventureGame.State
 {
     public class GameState
     {
-        public Player Player { get; set; } = new();
+        public Player? Player { get; set; }
         public List<ILevel> Levels { get; set; } = new();
     }
 }

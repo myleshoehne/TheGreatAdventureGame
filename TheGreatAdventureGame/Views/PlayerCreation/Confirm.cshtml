@@ -1,0 +1,17 @@
+﻿@model ViewModels.PlayerCreationViewModel
+
+<h1>Confirm Player</h1>
+
+<ul>
+    <li><strong>Player Name:</strong> @Model.Name</li>
+    <li><strong>Starting Weapon:</strong> @Model.StartingWeapon</li>
+</ul>
+
+<form asp-action="Confirm" asp-controller="PlayerCreation" method="post">
+    <input type="hidden" name="Name" value="@Model.Name" />
+    <input type="hidden" name="StartingWeapon" value="@Model.StartingWeapon" />
+
+    <button type="submit" name="action" value="confirm">Cofirm</button>
+    <button type="submit" name="action" value="edit">Edit</button>
+</form>
+

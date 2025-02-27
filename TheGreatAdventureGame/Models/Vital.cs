@@ -4,6 +4,13 @@
     {
         public int Current { get; set; }
         public int Max { get; set; }
+        public int Percentage
+        {
+            get
+            {
+                return (int)Math.Ceiling(((double)this.Current / this.Max) * 100);
+            }
+        }
         public bool IsDepleted
         {
             get
@@ -19,16 +26,16 @@
             }
         }
 
-        public Vital(int maxHP)
+        public Vital(int max)
         {
-            this.Current = maxHP;
-            this.Max = maxHP;
+            this.Current = max;
+            this.Max = max;
         }
 
-        public Vital(int startHP, int maxHP)
+        public Vital(int start, int max)
         {
-            this.Current = startHP;
-            this.Max = maxHP;
+            this.Current = start;
+            this.Max = max;
         }
 
         /// <summary>
@@ -68,6 +75,7 @@
         {
             this.Current = this.Max;
         }
+
         public override string ToString()
         {
             return $"{Current}/{Max}";

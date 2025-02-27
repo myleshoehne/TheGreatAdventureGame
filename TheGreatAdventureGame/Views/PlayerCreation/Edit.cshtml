@@ -1,0 +1,24 @@
+﻿@model ViewModels.PlayerCreationViewModel
+
+<h1>Edit Player</h1>
+
+<form asp-action="Create" asp-controller="PlayerCreation" method="post">
+    <label for="name">Player Name:</label>
+    <input type="text" id="name" name="Name" value="@Model.Name" required />
+    <label for="weapon">Choose a starting weapon:</label>
+    <select id="weapon" name="StartingWeapon" value="@Model.StartingWeapon" required>
+        <option value="" disabled selected>Select starting weapon</option>
+        @foreach (var weapon in Model.StartingWeaponOptions)
+        {
+            if(Model.StartingWeapon == weapon)
+            {
+                <option value="@weapon" selected>@weapon</option>
+            }
+            else 
+            {
+                <option value="@weapon">@weapon</option>
+            }
+        }
+    </select>
+    <button type="submit">Save</button>
+</form>

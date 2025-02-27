@@ -1,0 +1,11 @@
+﻿@model ViewModels.PlayerCreationViewModel
+
+<h1>Welcome to Your Great Adventure</h1>
+<p>Press start to begin @($"{Model.Name}'s") Great Adventure.</p>
+
+<form asp-action="Start" asp-controller="Adventure" method="post">
+    <input type="hidden" name="Name" value="@Model.Name" />
+    <input type="hidden" name="StartingWeapon" value="@Model.StartingWeapon" />
+
+    <button type="submit">Start</button>
+</form>
