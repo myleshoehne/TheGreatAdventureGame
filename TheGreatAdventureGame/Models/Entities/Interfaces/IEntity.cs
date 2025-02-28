@@ -22,7 +22,7 @@ namespace TheGreatAdventureGame.Models.Entities.Interfaces
         string Name { get; }
         string Description { get; }
         Vital Health { get; set; }
-        IItem? EquiptItem { get; set; }
+        IItem? EquippedItem { get; set; }
 
         //TODO: make EquiptItem prop that fetches the item from the itemID
     }

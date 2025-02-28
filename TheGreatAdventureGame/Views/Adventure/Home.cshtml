@@ -2,5 +2,9 @@
 
 <h1>The Great Adenture.</h1>
 
-@await Html.PartialAsync("_PlayerVitalStats", Model.Player)
+<div>
+    @await Html.PartialAsync("_PlayerVitalStats", Model.Player)
+</div>
+@await Html.PartialAsync("_PlayerInventory", Model.Player)
+
 

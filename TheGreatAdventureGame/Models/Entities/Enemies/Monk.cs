@@ -11,7 +11,7 @@ namespace TheGreatAdventureGame.Models.Entities.Enemies
     {
         public override string Name { get; set; } = "Monk";
         public override string Description { get; } = "Monk Description here";
-        public override IItem? EquiptItem { get; set; } //TODO: make ItemHelper.GeneratorNewItemId(IItem item);
+        public override IItem? EquippedItem { get; set; } //TODO: make ItemHelper.GeneratorNewItemId(IItem item);
         public override NumberRange HealEffectRange { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

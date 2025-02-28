@@ -6,49 +6,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Vital Stats</title>
     <style>
-        .progress-container {
+        .vital-bar-group-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .vital-bar-container {
             width: 100%;
             background-color: #f3f3f3;
             border-radius: 8px;
             height: 30px;
+            border: 2px solid black;
         }
 
-        .progress-bar {
+        .vital-bar {
             height: 100%;
             width: 0;
             background-color: black;
             text-align: center;
             line-height: 30px;
             color: white;
-            border-radius: 8px;
-            border: 2px solid black;
+            border-radius: 6px;
+            
         }
     </style>
 </head>
 <body>
-    <div style="display: flex;"> 
-        <div class="progress-container">
-            <div id="ProgressBarHealth" class="progress-bar">@Model.Health.Percentage%</div>
+    <div class="vital-bar-group-container"> 
+        <div class="vital-bar-container">
+            <div id="ProgressBarHealth" class="vital-bar">@Model.Health.Current / @Model.Health.Max</div>
         </div>
-        <div class="progress-container">
-            <div id="ProgressBarHunger" class="progress-bar">@Model.Hunger.Percentage%</div>
+        <div class="vital-bar-container">
+            <div id="ProgressBarHunger" class="vital-bar">@Model.Hunger.Current / @Model.Hunger.Max</div>
         </div>
-        <div class="progress-container">
-            <div id="ProgressBarThirst" class="progress-bar">@Model.Thirst.Percentage%</div>
+        <div class="vital-bar-container">
+            <div id="ProgressBarThirst" class="vital-bar">@Model.Thirst.Current / @Model.Thirst.Max</div>
         </div>
     </div>
     <script>
-        updateVitalBar('ProgressBarHealth', @Model.Health.Percentage);
-        updateVitalBar('ProgressBarHunger', @Model.Hunger.Percentage);
-        updateVitalBar('ProgressBarThirst', @Model.Thirst.Percentage);
+        updateVitalBar('ProgressBarHealth', @Model.Health.Current, @Model.Health.Max, @Model.Health.Percentage);
+        updateVitalBar('ProgressBarHunger', @Model.Hunger.Current, @Model.Hunger.Max, @Model.Hunger.Percentage);
+        updateVitalBar('ProgressBarThirst', @Model.Thirst.Current, @Model.Thirst.Max, @Model.Thirst.Percentage);
         
-        function updateVitalBar(barId, percent) {
+        function updateVitalBar(barId, curr, max, percent) {
             var bar = document.getElementById(barId);
 
             if(bar != null){
                 bar.style.width = percent + '%';
-                bar.innerHTML = percent + '%';
+                bar.innerHTML = curr + " / " + max;
                 setVitalBarColor(bar, percent); 
             }
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TheGreatAdventureGame.Models;
 using TheGreatAdventureGame.Models.Entities.Players;
+using TheGreatAdventureGame.Models.Items.Consumables.Food;
 using TheGreatAdventureGame.Models.Items.Weapons;
 using TheGreatAdventureGame.State;
 using TheGreatAdventureGame.ViewModels;
@@ -50,6 +51,15 @@ namespace TheGreatAdventureGame.Controllers
         public IActionResult Home()
         {
             //TODO: Generate levels
+
+            //testing
+            _gameState.Player.PickUpItem(new Crossbow(Rarity.Rare));
+            _gameState.Player.PickUpItem(new Apple(Rarity.Uncommon));
+            _gameState.Player.PickUpItem(new Sword(Rarity.Epic));
+            //_gameState.Player.PickUpItem(new Sword(Rarity.Legendary));
+            _gameState.Player.PickUpItem(new Apple(Rarity.Common));
+
+
 
             return View(_gameState);
         }

@@ -17,7 +17,7 @@ namespace TheGreatAdventureGame.Managers
                 return;
             }
 
-            entity.EquiptItem = inventoryEntity.Inventory[item.ItemTypeID];
+            entity.EquippedItem = inventoryEntity.Inventory[item.ItemTypeID];
         }
 
         public static void EntityDropsItem(IInventory inventoryEntity, IItem? dropItem = null)
@@ -27,14 +27,14 @@ namespace TheGreatAdventureGame.Managers
 
             if(dropItem == null)
             {
-                if(entity.EquiptItem == null)
+                if(entity.EquippedItem == null)
                 {
                     // No item to drop
                     Console.WriteLine($"No item to drop.");
                     return;
                 }
                 // Default to drop equipt item if no dropItem is provident
-                dropItem = entity.EquiptItem;
+                dropItem = entity.EquippedItem;
             }
 
             //TODO: add dropped item to environment here
@@ -45,32 +45,40 @@ namespace TheGreatAdventureGame.Managers
 
         public static void EntityPicksUpItem(IInventory inventoryEntity, IItem pickUpItem)
         {
-            if (inventoryEntity.Inventory.ContainsKey(pickUpItem.ItemTypeID))
+            if (inventoryEntity.Inventory.Count < inventoryEntity.InventoryCapacity)
             {
-                // Item of same type is already in inventory
-                if (pickUpItem is IStackable stackablePickUpItem && inventoryEntity.Inventory[pickUpItem.ItemTypeID] is IStackable stackableInventoryItem)
+                if (inventoryEntity.Inventory.ContainsKey(pickUpItem.ItemTypeID))
                 {
-                    // Item is stackable
-                    int quantity = stackablePickUpItem.Quantity.Current;
-
-                    int? quantityLeftOver = stackableInventoryItem.Quantity.Add(quantity);
-
-                    if(quantityLeftOver.HasValue)
+                    // Item of same type is already in inventory
+                    if (pickUpItem is IStackable stackablePickUpItem && inventoryEntity.Inventory[pickUpItem.ItemTypeID] is IStackable stackableInventoryItem)
                     {
-                        // TODO: push back out to the environment here
+                        // Item is stackable
+                        int quantity = stackablePickUpItem.Quantity.Current;
+
+                        int? quantityLeftOver = stackableInventoryItem.Quantity.Add(quantity);
+
+                        if (quantityLeftOver.HasValue)
+                        {
+                            // TODO: push back out to the environment here
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{pickUpItem.Name} is already in inventory.");
                     }
 
                 }
                 else
                 {
-                    Console.WriteLine($"{pickUpItem.Name} is already in inventory.");
+                    inventoryEntity.Inventory.Add($"{pickUpItem.ItemTypeID}", pickUpItem);
                 }
-
             }
             else
             {
-                inventoryEntity.Inventory.Add($"{pickUpItem.ItemTypeID}", pickUpItem);
+                Console.WriteLine("Player doesn't have enough room in inventory.");
             }
         }
+
     }
 } 

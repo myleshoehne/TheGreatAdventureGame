@@ -16,20 +16,20 @@ namespace TheGreatAdventureGame.Managers
             IEntity combatEntity = (IEntity)combatant;
             if(weapon == null)
             {
-                if (combatEntity.EquiptItem == null) 
+                if (combatEntity.EquippedItem == null) 
                 {
                     Console.WriteLine($"{combatEntity.Name} doesn't have an item equipted.");
                     return;
                 }
 
-                if(combatEntity.EquiptItem is IWeapon equiptWeapon)
+                if(combatEntity.EquippedItem is IWeapon equiptWeapon)
                 {
                     // Default weapon to equipted weapon
                     weapon = equiptWeapon;
                 }
                 else
                 {
-                    Console.WriteLine($"Canoot attack with {combatEntity.EquiptItem}, not a weapon.");
+                    Console.WriteLine($"Canoot attack with {combatEntity.EquippedItem}, not a weapon.");
                     return;
                 }
             }
@@ -50,20 +50,20 @@ namespace TheGreatAdventureGame.Managers
             IEntity consumerEntity = (IEntity)consumer;
             if (consumable == null)
             {
-                if(consumerEntity.EquiptItem == null)
+                if(consumerEntity.EquippedItem == null)
                 {
                     Console.WriteLine($"{consumerEntity.Name} doesn't have an item equipted.");
                     return;
                 }
 
-                if(consumerEntity.EquiptItem is IConsumable equiptConsumable)
+                if(consumerEntity.EquippedItem is IConsumable equiptConsumable)
                 {
                     // Default consumable to equipted consumable
                     consumable = equiptConsumable;
                 }
                 else
                 {
-                    Console.WriteLine($"Canoot consume {consumerEntity.EquiptItem}, not a consumable.");
+                    Console.WriteLine($"Canoot consume {consumerEntity.EquippedItem}, not a consumable.");
                     return;
                 }
             }

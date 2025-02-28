@@ -10,7 +10,7 @@ namespace TheGreatAdventureGame.Models.Entities
         public abstract string Name { get; set; }
         public abstract string Description { get; }
         public Vital Health { get; set; }
-        public virtual IItem? EquiptItem { get; set; } //TODO: make ItemHelper.GenerateRandomItemId();
+        public virtual IItem? EquippedItem { get; set; }
 
         protected EntityBase() 
         {
