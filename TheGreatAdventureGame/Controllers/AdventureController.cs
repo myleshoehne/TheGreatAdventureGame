@@ -56,10 +56,11 @@ namespace TheGreatAdventureGame.Controllers
             _gameState.Player.PickUpItem(new Crossbow(Rarity.Rare));
             _gameState.Player.PickUpItem(new Apple(Rarity.Uncommon));
             _gameState.Player.PickUpItem(new Sword(Rarity.Epic));
-            //_gameState.Player.PickUpItem(new Sword(Rarity.Legendary));
-            _gameState.Player.PickUpItem(new Apple(Rarity.Common));
+            _gameState.Player.PickUpItem(new Sword(Rarity.Legendary));
+            _gameState.Player.PickUpItem(new Apple(Rarity.Legendary));
 
-
+            _gameState.Player.DropItem();
+            _gameState.Player.PickUpItem(new Sword(Rarity.Common));
 
             return View(_gameState);
         }

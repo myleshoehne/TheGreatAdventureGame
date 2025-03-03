@@ -14,7 +14,7 @@ namespace TheGreatAdventureGame.Models.Entities.Players
         public void Consume(IConsumable? consumable = null) => CombatManager.EntityTakesEffectFromConsumable(this, consumable);
         public void DealWeaponEffect(ICombatant targetEntity) => CombatManager.EntityDealsWeaponEffect(this, targetEntity);
         public void TakeWeaponEffect(IWeapon usedWeapon) => CombatManager.EntityTakesEffectFromWeapon(this, usedWeapon);
-        public void DropItem(IItem? item) => InventoryManager.EntityDropsItem(this, item);
+        public void DropItem(IItem? item = null) => InventoryManager.EntityDropsItem(this, item);
         public void EquiptItem(IItem item) => InventoryManager.EntityEquiptsItem(this, item);
         public void PickUpItem(IItem item) => InventoryManager.EntityPicksUpItem(this, item);
 

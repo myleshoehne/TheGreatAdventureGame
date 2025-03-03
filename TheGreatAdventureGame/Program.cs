@@ -1,6 +1,9 @@
 using System.Numerics;
 using System;
 using TheGreatAdventureGame.State;
+using System.Reflection;
+using TheGreatAdventureGame.Helpers;
+using TheGreatAdventureGame.Models.Items.Consumables.Food;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,5 +31,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+string applePath = ItemHelper.GetItemImage(new Apple());
 
 app.Run();

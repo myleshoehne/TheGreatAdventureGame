@@ -1,4 +1,5 @@
 ﻿using System.CodeDom.Compiler;
+using System.Reflection;
 using TheGreatAdventureGame.Models;
 using TheGreatAdventureGame.Models.Entities;
 using TheGreatAdventureGame.Models.Items;
@@ -8,7 +9,11 @@ namespace TheGreatAdventureGame.Helpers
 {
     public class ItemHelper
     {
-        
+        public static readonly Dictionary<Type, string> ItemImagePaths = Assembly.GetExecutingAssembly()
+            .GetTypes()
+            .Where(t => typeof(IItem).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
+            .ToDictionary(t => t, t => $"~/images/{t.Name.ToLower()}.png");
+            
 
         /// <summary>
         /// Generates a rarity based on predefined weighted probabilities.
@@ -43,6 +48,31 @@ namespace TheGreatAdventureGame.Helpers
             if (rarity == Rarity.Rare) return 1.5m;
             if (rarity == Rarity.Epic) return 2m;
             return 3m;
+        }
+
+        public static string GetRarityStyle(Rarity rarity)
+        {
+            return rarity switch
+            {
+                Models.Rarity.Common => "background: linear-gradient(135deg, #9e9e9e, #616161); border-color: #757575;",
+                Models.Rarity.Uncommon => "background: linear-gradient(135deg, #4caf50, #1b5e20); border-color: #2E7D32;",
+                Models.Rarity.Rare => "background: linear-gradient(135deg, #2196f3, #0d47a1); border-color: #1976D2;",
+                Models.Rarity.Epic => "background: linear-gradient(135deg, #9c27b0, #6a1b9a); border-color: #8E24AA; box-shadow: 0px 0px 10px #9c27b0;",
+                Models.Rarity.Legendary => "background: linear-gradient(135deg, #ffd700, #ff8f00); border-color: #FFAA00; box-shadow: 0px 0px 15px #ffd700;",
+                _ => "background: white; border-color: gray;"
+            };
+        }
+
+        public static string GetItemImage(IItem item)
+        {
+            Type itemType = item.GetType();
+
+            if (ItemImagePaths.ContainsKey(itemType))
+            {
+                return ItemImagePaths[itemType];
+            }
+
+            throw new ArgumentException($"Cannot return image for {itemType}, does not contain item type.");
         }
 
         /// <summary>

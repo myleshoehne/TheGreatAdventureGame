@@ -8,6 +8,6 @@ namespace TheGreatAdventureGame.Models.Entities.Interfaces
         int InventoryCapacity { get; set; }
         void PickUpItem(IItem item);
         void EquiptItem(IItem item);
-        void DropItem(IItem? item);
+        void DropItem(IItem? item = null);
     }
 }

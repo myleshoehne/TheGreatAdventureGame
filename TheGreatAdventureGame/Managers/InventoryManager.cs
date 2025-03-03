@@ -35,6 +35,9 @@ namespace TheGreatAdventureGame.Managers
                 }
                 // Default to drop equipt item if no dropItem is provident
                 dropItem = entity.EquippedItem;
+
+                // Remove dropped item from Equipped slot 
+                entity.EquippedItem = null;
             }
 
             //TODO: add dropped item to environment here
