@@ -8,9 +8,9 @@
     @{
         if(Model.EquippedItem != null)
         {
-            <div class="inventory-item-container" style="@Helpers.ItemHelper.GetRarityStyle(Model.EquippedItem.Rarity)">
-                <img class="inventory-item" src="@Url.Content(Helpers.ItemHelper.GetItemImage(Model.EquippedItem))" alt="@Model.EquippedItem.Name" />
-            </div>
+            <a class="inventory-item-container" style="@Helpers.ItemHelper.GetRarityStyle(Model.EquippedItem.Rarity)" href="@Url.Action("ItemStats", "Item", new { itemInstanceId = @Model.EquippedItem.InstanceID })">
+                <img class="inventory-item" src="@Url.Content(Model.EquippedItem.ImageUrl)" alt="@Model.EquippedItem.Name" />
+            </a>
         }
         else
         {
@@ -30,9 +30,9 @@
 
                 if(Model.EquippedItem?.ItemTypeID != item.Value.ItemTypeID)
                 {
-                    <div class="inventory-item-container" style="@Helpers.ItemHelper.GetRarityStyle(item.Value.Rarity)">
-                        <img class="inventory-item" src="@Url.Content(Helpers.ItemHelper.GetItemImage(item.Value))" alt="@item.Value.Name" />
-                    </div>
+                    <a class="inventory-item-container" style="@Helpers.ItemHelper.GetRarityStyle(item.Value.Rarity)" href="@Url.Action("ItemStats", "Item", new { itemInstanceId = item.Value.InstanceID })">
+                        <img class="inventory-item" src="@Url.Content(item.Value.ImageUrl)" alt="@item.Value.Name" />
+                    </a>
                 }
             }
             else 

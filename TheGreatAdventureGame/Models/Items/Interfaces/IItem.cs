@@ -19,6 +19,7 @@
         string InstanceID { get; }
         string Name { get; }
         string Description { get; }
+        string ImageUrl { get; }
 
         /// <summary>
         /// Gets or sets the rarity level of the item.

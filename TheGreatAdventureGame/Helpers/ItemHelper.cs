@@ -72,7 +72,7 @@ namespace TheGreatAdventureGame.Helpers
                 return ItemImagePaths[itemType];
             }
 
-            throw new ArgumentException($"Cannot return image for {itemType}, does not contain item type.");
+            throw new ArgumentException($"Need to add image for {item.Name}, or change image name to match the item name: {item.Name.ToLower()}.png");
         }
 
         /// <summary>

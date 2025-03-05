@@ -1,5 +1,164 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ViewModels.ItemStatsViewModel
+
 @{
+    ViewData["Title"] = "Item Stats";
 }
+
+<div class="item-stats-page">
+    <div class="item-stats-container">
+        <div class="item-overview">
+            <div class="item-header">
+                <h3>@Model.Name</h3>
+                <em class="rarity">@Model.Rarity</em>
+            </div>
+            <div class="item-description">
+                <p>@Model.Description</p>
+            </div>
+            <div class="item-image">
+                <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Name" class="item-image" style="@Helpers.ItemHelper.GetRarityStyle(Model.Rarity)" />
+            </div>
+            
+        </div>
+
+        <div class="item-details">
+            
+
+            @if (!string.IsNullOrEmpty(Model.AttackEffectRange))
+            {
+                <div class="item-detail">
+                    <strong>Attack Range:</strong> <span>@Model.AttackEffectRange</span>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.NutritionValueRange))
+            {
+                <div class="item-detail">
+                    <strong>Nutrition Range:</strong> <span>@Model.NutritionValueRange</span>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="item-stats-footer">
+        <button class="back-button">Back to Items</button>
+    </div>
+</div>
+
+<style>
+    /* General Layout */
+    .item-stats-page {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Title */
+    h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 5px;
+    }
+
+    /* Container Layout */
+    .item-stats-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #ddd;
+    }
+
+    /* Item Overview */
+    .item-overview {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .item-header {
+        margin-bottom: 10px;
+    }
+
+    .rarity {
+        font-style: italic;
+        font-size: 1.2rem;
+        color: #666;
+    }
+
+    /* Item Image */
+    .item-image {
+        max-width: 280px;
+        border-radius: 8px;
+        background-color: white;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+    }
+
+        .item-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+            .item-image img:hover {
+                transform: scale(1.05);
+            }
+
+    /* Item Details */
+    .item-details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .item-description {
+        font-size: 1.1rem;
+        color: #444;
+        line-height: 1.6;
+    }
+
+    .item-detail {
+        font-size: 1.1rem;
+        color: #555;
+    }
+
+        .item-detail strong {
+            color: #222;
+        }
+
+        .item-detail span {
+            font-weight: 500;
+            color: #444;
+        }
+
+    /* Footer Button */
+    .item-stats-footer {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .back-button {
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        background-color: #FF6F20;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    }
+
+        .back-button:hover {
+            background-color: #e65a00;
+        }
+</style>

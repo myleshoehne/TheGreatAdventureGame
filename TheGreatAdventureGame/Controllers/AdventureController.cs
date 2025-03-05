@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TheGreatAdventureGame.FakeDatabase;
 using TheGreatAdventureGame.Models;
 using TheGreatAdventureGame.Models.Entities.Players;
 using TheGreatAdventureGame.Models.Items.Consumables.Food;
@@ -35,12 +36,14 @@ namespace TheGreatAdventureGame.Controllers
                 Sword sword = new Sword(Rarity.Common);
                 _gameState.Player.PickUpItem(sword);
                 _gameState.Player.EquiptItem(sword);
+                ItemsDB.AddItem(sword);
             }
             else if(createdPlayer.StartingWeapon.ToLower() == "crossbow")
             {
                 Crossbow crossbow = new Crossbow(Rarity.Common);
                 _gameState.Player.PickUpItem(crossbow);
                 _gameState.Player.EquiptItem(crossbow);
+                ItemsDB.AddItem(crossbow);
             }
 
             
@@ -53,14 +56,29 @@ namespace TheGreatAdventureGame.Controllers
             //TODO: Generate levels
 
             //testing
-            _gameState.Player.PickUpItem(new Crossbow(Rarity.Rare));
-            _gameState.Player.PickUpItem(new Apple(Rarity.Uncommon));
-            _gameState.Player.PickUpItem(new Sword(Rarity.Epic));
-            _gameState.Player.PickUpItem(new Sword(Rarity.Legendary));
-            _gameState.Player.PickUpItem(new Apple(Rarity.Legendary));
 
-            _gameState.Player.DropItem();
-            _gameState.Player.PickUpItem(new Sword(Rarity.Common));
+            Crossbow RareCrossBow = new Crossbow(Rarity.Rare);
+            _gameState.Player.PickUpItem(RareCrossBow);
+            ItemsDB.AddItem(RareCrossBow);
+
+            Crossbow UncommonCrossBow = new Crossbow(Rarity.Common);
+            _gameState.Player.PickUpItem(UncommonCrossBow);
+            ItemsDB.AddItem(UncommonCrossBow);
+
+            Apple LegendaryApple = new Apple(Rarity.Legendary);
+            _gameState.Player.PickUpItem(LegendaryApple);
+            ItemsDB.AddItem(LegendaryApple);
+            
+
+            Apple CommonApple = new Apple(Rarity.Common);
+            _gameState.Player.PickUpItem(CommonApple);
+            ItemsDB.AddItem(CommonApple);
+
+            Console.WriteLine(ItemsDB.Items);
+            //_gameState.Player.PickUpItem(new Apple(Rarity.Uncommon));
+            //_gameState.Player.PickUpItem(new Sword(Rarity.Epic));
+            //_gameState.Player.PickUpItem(new Sword(Rarity.Legendary));
+            //_gameState.Player.PickUpItem(new Apple(Rarity.Legendary));
 
             return View(_gameState);
         }
