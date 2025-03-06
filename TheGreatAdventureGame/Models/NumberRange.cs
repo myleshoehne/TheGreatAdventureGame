@@ -7,10 +7,10 @@ namespace TheGreatAdventureGame.Models
         public int Min { get; set; }
         public int Max { get; set; }
 
-        public NumberRange(int baseMin, int baseMax)
+        public NumberRange(int min, int max)
         {
-            this.Min = baseMin;
-            this.Max = baseMax;
+            this.Min = min;
+            this.Max = max;
         }
 
         public int GetRandomValueFromBaseRange()

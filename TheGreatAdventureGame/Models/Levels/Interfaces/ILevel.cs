@@ -7,11 +7,14 @@ namespace TheGreatAdventureGame.Models.Levels.Interfaces
 {
     public interface ILevel
     {
+        string LevelTypeID { get; } 
+        string InstanceID { get; }
         string Name { get; }
         string Description { get; }
         Player Player { get; }
-        bool IsPlayerTurn { get; }
-        bool Start();
-        void NextTurn();
+        IEntity? Entity { get; }
+        Dictionary<int, IItem> EnvironmentItems { get; set; }
+        bool IsPlayerTurn { get; set; }
+        bool Cleared { get; set; }
     }
 }

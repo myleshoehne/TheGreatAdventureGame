@@ -1,4 +1,7 @@
-﻿using TheGreatAdventureGame.Models.Entities.Players;
+﻿using System.Collections;
+using TheGreatAdventureGame.Helpers;
+using TheGreatAdventureGame.Models.Entities.Interfaces;
+using TheGreatAdventureGame.Models.Entities.Players;
 using TheGreatAdventureGame.Models.Items.Consumables.Food;
 using TheGreatAdventureGame.Models.Items.Interfaces;
 using TheGreatAdventureGame.Models.Items.Weapons;
@@ -6,41 +9,45 @@ using TheGreatAdventureGame.Models.Levels.Interfaces;
 
 namespace TheGreatAdventureGame.Models.Levels
 {
-    public class HuntingLevel : ILevel, IMultipleEnvironmentItems
+    public class HuntingLevel : ILevel
     {
-        private Player _player;
+        public string LevelTypeID { get; }
 
-        public string Name => "Hunting Level";
+        public string InstanceID { get; }
 
-        public string Description => "The player is presented with three targets, each containing different items and buffs. Each target has a certain percentage chance to be hit. " +
-            "If the player successfully hits a target, they receive the item or buff associated with it. If the player misses a target, they lose health.";
+        public string Name { get; }
 
-        public Player Player => _player;
+        public string Description { get; }
 
-        public bool IsPlayerTurn => throw new NotImplementedException();
+        public Player? Player { get; set; }
 
-        public Dictionary<string, IItem> EnvironmentItems => new Dictionary<string, IItem>();
+        public IEntity? Entity { get; }
 
-        public HuntingLevel(Player player)
+        public bool IsPlayerTurn { get; set; }
+        public bool Cleared { get; set; }
+        public Dictionary<int, IItem> EnvironmentItems { get; set; }
+
+        public HuntingLevel(Player player, int numItems = 3)
         {
-            _player = player;
+            this.LevelTypeID = $"{this.GetType().Name}";
+            this.InstanceID = Guid.NewGuid().ToString();
+            this.Name = "Hunting";
+            this.Description = "Hunting level desc...";
+            this.Player = player;
+            this.EnvironmentItems = new Dictionary<int, IItem>();
 
-            //Randomly generate itmes
-            //TODO: make this randomly generative
-            this.EnvironmentItems.Add("Sword", new Sword());
-            this.EnvironmentItems.Add("Apple", new Apple());
-            this.EnvironmentItems.Add("Crossbow", new Crossbow());
-        }
+            for (int i = 0; i < numItems; i++)
+            {
+                Random random = new Random();
 
-        //TODO: not sure how we are going to go about this with controllers
-        public void NextTurn()
-        {
-            throw new NotImplementedException();
-        }
+                int randomPercent = random.Next(1, 101);
+                IItem randomItem = ItemHelper.GetRandomItem();
 
-        public bool Start()
-        {
-            throw new NotImplementedException();
+                this.EnvironmentItems.Add(randomPercent, randomItem);
+            }
+
+            this.IsPlayerTurn = true;
+            this.Cleared = false;
         }
     }
 }

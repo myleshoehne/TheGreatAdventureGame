@@ -4,6 +4,7 @@ namespace TheGreatAdventureGame.ViewModels
 {
     public class ItemStatsViewModel
     {
+        public string InstanceID { get; set; }
         public required string Name { get; set; }
         public required string Description { get; set; }
         public required string ImageUrl { get; set; }

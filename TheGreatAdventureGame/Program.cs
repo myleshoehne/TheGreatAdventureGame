@@ -4,6 +4,8 @@ using TheGreatAdventureGame.State;
 using System.Reflection;
 using TheGreatAdventureGame.Helpers;
 using TheGreatAdventureGame.Models.Items.Consumables.Food;
+using TheGreatAdventureGame.Models.Levels;
+using TheGreatAdventureGame.Models.Entities.Players;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,5 +33,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+//testing
+Player player = new Player("Cosmic");
+HuntingLevel level = new HuntingLevel(player);
 
 app.Run();

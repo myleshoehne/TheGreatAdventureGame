@@ -1,0 +1,99 @@
+﻿@model Dictionary<int, Models.CatalogLevel>
+
+<div class="level-catalog-container">
+    @foreach (var item in Model)
+    {
+        <a class="level-item-container
+            @(item.Value.IsCurrent ? "current-level" : "")
+            @(item.Value.IsBeat ? "beaten-level" : "")
+            @(item.Value.IsLocked ? "locked-level" : "")"
+            href="@Url.Action(item.Value.Name, "Levels")">
+
+            <span class="level-number">@item.Key</span>
+        </a>
+    }
+</div>
+
+<style>
+    /* Container for the level catalog */
+    .level-catalog-container {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr); /* 10 items per row */
+        gap: 10px; /* Space between items */
+        max-width: 100%; /* Allow it to be responsive */
+        padding: 10px;
+        margin: 0 auto;
+    }
+
+    /* Each level item container (square) */
+    .level-item-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background-color: #f3f3f3;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        position: relative;
+    }
+
+        /* Hover effect */
+        .level-item-container:hover {
+            transform: scale(1.1);
+        }
+
+    /* Number in the center of the square */
+    .level-number {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Styles for different level states */
+
+    /* Beaten level */
+    .beaten-level {
+        background-color: #4caf50; /* Green */
+        color: white;
+    }
+
+    /* Current level */
+    .current-level {
+        background-color: #ff9800; /* Orange */
+        color: white;
+    }
+
+    /* Locked level */
+    .locked-level {
+        background-color: #ccc; /* Grey */
+        color: white;
+        cursor: not-allowed; /* To indicate it's locked */
+    }
+
+    /* Optionally, you can add icons to the levels */
+    .level-item-container::after {
+        content: "";
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+    }
+
+    .beaten-level::after {
+        background-color: #4caf50; /* Green icon */
+    }
+
+    .current-level::after {
+        background-color: #ff9800; /* Orange icon */
+    }
+
+    .locked-level::after {
+        background-color: #ccc; /* Grey icon */
+    }
+</style>

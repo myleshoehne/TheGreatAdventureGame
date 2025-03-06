@@ -1,5 +1,6 @@
 ﻿using System.CodeDom.Compiler;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using TheGreatAdventureGame.Models;
 using TheGreatAdventureGame.Models.Entities;
 using TheGreatAdventureGame.Models.Items;
@@ -9,6 +10,11 @@ namespace TheGreatAdventureGame.Helpers
 {
     public class ItemHelper
     {
+        public static readonly Type[] AllItems = Assembly.GetExecutingAssembly()
+            .GetTypes()
+            .Where(t => typeof(IItem).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
+            .ToArray();
+
         public static readonly Dictionary<Type, string> ItemImagePaths = Assembly.GetExecutingAssembly()
             .GetTypes()
             .Where(t => typeof(IItem).IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
@@ -63,6 +69,21 @@ namespace TheGreatAdventureGame.Helpers
             };
         }
 
+        public static IItem GetRandomItem()
+        {
+            int roll = GetItemRoll();
+            Type itemType = AllItems[roll];
+
+            object? item = Activator.CreateInstance(itemType);
+
+            if(item != null && typeof(IItem).IsAssignableFrom(itemType))
+            {
+                return (IItem)item;
+            }
+
+            throw new InvalidOperationException($"Random item: {itemType}, does not implement IItem.");
+        }
+
         public static string GetItemImage(IItem item)
         {
             Type itemType = item.GetType();
@@ -103,5 +124,11 @@ namespace TheGreatAdventureGame.Helpers
             Random random = new Random();
             return random.Next(0, EnumLength); 
         } 
+
+        private static int GetItemRoll()
+        {
+            Random random = new Random();
+            return random.Next(0, AllItems.Length);
+        }
     }
 }

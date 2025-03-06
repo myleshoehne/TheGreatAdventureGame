@@ -1,0 +1,129 @@
+﻿@using TheGreatAdventureGame.Models.Entities.Players
+@model Player
+
+<div class="inventory-container">
+    <div class="equipped-item-container">
+        @{
+            if (Model.EquippedItem != null)
+            {
+                <a class="equipped-item-link" style="@Helpers.ItemHelper.GetRarityStyle(Model.EquippedItem.Rarity)" href="@Url.Action("ItemStats", "Item", new { itemInstanceId = @Model.EquippedItem.InstanceID })">
+                    <img class="equipped-item" src="@Url.Content(Model.EquippedItem.ImageUrl)" alt="@Model.EquippedItem.Name" />
+                </a>
+            }
+            else
+            {
+                <div class="equipped-item"></div>
+            }
+        }
+    </div>
+
+    <div class="item-separator"></div>
+
+    <div id="inventory-items" class="inventory-grid">
+        @{
+            int invIndexTotal = Model.Inventory.Count - 1;
+            for (int i = 0; i < Model.InventoryCapacity; i++)
+            {
+                if (invIndexTotal >= i)
+                {
+                    var item = Model.Inventory.ElementAt(i);
+
+                    if (Model.EquippedItem?.ItemTypeID != item.Value.ItemTypeID)
+                    {
+                        <a class="inventory-item-container" style="@Helpers.ItemHelper.GetRarityStyle(item.Value.Rarity)" href="@Url.Action("ItemStats", "Item", new { itemInstanceId = item.Value.InstanceID })">
+                            <img class="inventory-item" src="@Url.Content(item.Value.ImageUrl)" alt="@item.Value.Name" />
+                        </a>
+                    }
+                }
+                else
+                {
+                    <div class="inventory-item-container">
+                        <div class="inventory-item"></div>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
+
+<style>
+    .inventory-container {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+        border: 2px solid black;
+        border-radius: 8px;
+        background-color: #f3f3f3;
+        width: fit-content;
+    }
+
+    .equipped-item-container {
+        width: 130px;
+        height: 130px;
+        border: 2px solid gray;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .equipped-item-container:hover {
+            transform: scale(1.1);
+        }
+
+    .equipped-item {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .item-separator {
+        border-right: 2px solid #ccc;
+        margin: 0 10px;
+    }
+
+    .inventory-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 60px);
+        grid-template-rows: repeat(2, 60px);
+        gap: 10px;
+    }
+
+    .inventory-item-container {
+        width: 60px;
+        height: 60px;
+        border: 2px solid gray;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        cursor: pointer;
+        transition: transform 0.1s ease-in-out;
+    }
+
+        .inventory-item-container:hover {
+            transform: scale(1.1);
+        }
+
+    .inventory-item {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+</style>
+
+<script>
+    window.onload = function() {
+        updateInventoryGridWidth();
+    };
+
+    function updateInventoryGridWidth() {
+        var inventoryGrid = document.getElementById('inventory-items');
+        var columns = Math.ceil((@Model.InventoryCapacity - 1) / 2);
+        inventoryGrid.style.gridTemplateColumns = 'repeat('+ columns +', 60px)';
+    }
+</script>

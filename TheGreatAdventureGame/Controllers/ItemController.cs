@@ -2,12 +2,19 @@
 using System.Reflection;
 using TheGreatAdventureGame.FakeDatabase;
 using TheGreatAdventureGame.Models.Items.Interfaces;
+using TheGreatAdventureGame.State;
 using TheGreatAdventureGame.ViewModels;
 
 namespace TheGreatAdventureGame.Controllers
 {
     public class ItemController : Controller
     {
+        private readonly GameState _gameState;
+        public ItemController(GameState gameState)
+        {
+            this._gameState = gameState;
+        }
+
         [HttpGet]
         public IActionResult ItemStats(string itemInstanceId)
         {
@@ -17,6 +24,7 @@ namespace TheGreatAdventureGame.Controllers
 
             ItemStatsViewModel viewModel = new ItemStatsViewModel
             {
+                InstanceID = item.InstanceID,
                 Name = item.Name,
                 Description = item.Description,
                 Rarity = item.Rarity,
@@ -45,6 +53,15 @@ namespace TheGreatAdventureGame.Controllers
             }
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult EquipItem(string itemInstanceId)
+        {
+            IItem? item = ItemsDB.GetItemById(itemInstanceId);
+            this._gameState.Player.EquiptItem(item);
+
+            return RedirectToAction("Home", "Adventure");
         }
     }
 }

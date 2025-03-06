@@ -2,9 +2,17 @@
 
 <h1>The Great Adenture.</h1>
 
-<div>
-    @await Html.PartialAsync("_PlayerVitalStats", Model.Player)
+<div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+    <div>
+        @await Html.PartialAsync("_PlayerVitalStats", Model.Player)
+    </div>
+    <div>
+        @await Html.PartialAsync("_PlayerInventorySquare", Model.Player)
+    </div>
 </div>
-@await Html.PartialAsync("_PlayerInventory", Model.Player)
+
+@await Html.PartialAsync("_LevelCatalog", Model.Levels)
+
+
 
 
